@@ -1,0 +1,21 @@
+.listLink{
+display:flex;
+align-items: center;
+justify-content: center;
+list-style: none;
+ 
+   font-size: 30px;
+    font-weight: 900;
+}
+
+.link{
+    text-decoration: none;
+    color: rgb(84, 58, 34);
+margin-right: 20px;
+}
+.link:not(:last-child){
+    margin-right: 20px;
+}
+/* .link:active{
+    color: rgb(255, 0, 0);
+} */
