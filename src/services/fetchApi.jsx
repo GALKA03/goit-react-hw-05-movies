@@ -16,7 +16,7 @@ export async function fetchByTrending (page,perPage) {
     return response.data.results;
 }
  
-export async function fetchBySerch(query, page) {
+export async function fetchBySerch(query) {
     const response = await axios('search/movie', {
         params:
         {
@@ -29,7 +29,7 @@ export async function fetchBySerch(query, page) {
     return response.data.results;
 }
 
-export async function fetchMovieshById(movie_id) {
+export async function fetchMoviesById(movie_id) {
     const response = await axios(`movie/${movie_id}`, {
         params:
         {
@@ -37,6 +37,29 @@ export async function fetchMovieshById(movie_id) {
         }
     })
     return response.data;
+}
+
+export async function fetchMoviesByActors(movie_id) {
+    const response = await axios(`movie/${movie_id}/credits`, {
+        params:
+        {
+            api_key: KEY,   
+           // cast:[]
+        }
+    })
+    return response.data;
+}
+
+export async function fetchMoviesReviews(movie_id,page,results) {
+    const response = await axios(`movie/${movie_id}/reviews`, {
+        params:
+        {
+            api_key: KEY,   
+            results: [],
+            page:1,
+        }
+    })
+    return response.data.results;
 }
 //const fetchtrendingFilms= 'https://api.themoviedb.org/3/trending/all/week?api_key=<<api_key>'>
 

@@ -4,6 +4,7 @@ import { fetchByTrending } from '../services/fetchApi'
 
 export const HomePage = () => {
     const [movies, setMovies] = useState([]);
+
     //посмотреть репету про useRefрефс для исключения двойных запросов
     useEffect(() => {
         fetchByTrending()
@@ -27,7 +28,7 @@ export const HomePage = () => {
                     )    
                 })}     
             </ul >
-           <Outlet/>  
+         <Outlet/>    
             </>
         )
     )

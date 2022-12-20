@@ -17,13 +17,21 @@ let activeStyle = {
                 to='/' end
                 style={({ isActive }) =>isActive ? activeStyle : undefined}
                 className={styles.link}
-                >Home</NavLink></li>
-                <li><NavLink 
-                    to='/movies'
+                >Movies</NavLink></li>
+                {/* <li><NavLink 
+                    to='/movie'
                     style={({ isActive }) =>isActive ? activeStyle : undefined} 
                 className={styles.link}
 
-                >Movies</NavLink></li>
+    >Movies</NavLink></li>*/}
+                <li>  
+                    <NavLink to='/search'
+                     style={({ isActive }) =>isActive ? activeStyle : undefined} 
+                className={styles.link}
+                    >
+                        Serch
+                    </NavLink>
+                </li>
             </ul>
         </nav>
     )
