@@ -10,37 +10,48 @@ export const  MovieSearch = () => {
 const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     
-
-const query=serchParams.get('movieName')
+ const query = serchParams.get('moviename')
+     console.log('query',query)
     
     useEffect(() => {
-        async function fetchMovies() {
-            
-    const data = await fetchBySerch(query);
-            setMovies(data)
-            console.log('data',data)
+        // if (query===null || query=== '') {
+        //   return  alert('Try again')
+        // }
+        async function fetchMovies() {      
+    const response = await fetchBySerch(query);
+            setMovies(response)
+            console.log('response',response)
     }
 fetchMovies()
-},[query])
-    const hendelChengeInput = e => {
-       const a= setSearchParams({ movieName:e.target.value.toLowerCase() })
-    console.log('a',a)
-    };
+    }, [query, page])
+    
+
+// const hendelChengeInput = e => {
+//     setMovies(e.target.toLowerCase());
+//     console.log('e.target.value',e.target.value)
+//   };
             
 const hendleFormSubmit = e => {
     e.preventDefault();
-    const form = e.target
-    //console.log(form)
-//setSearchParams({ movieName:form.elements.input.query.value})
-form.reset()
+    // if (query===null || query=== '') {
+    //       return  alert('Try again')
+    //     }
+    // if (!setMovies.trim()) {
+    //     alert('Enter the film title')
+    // }
+    const form = e.curenTarget.elemetts.moviename
+    console.log(form)
+//setSearchParams({ movieName:form.elements.query.value})
+    form.reset()
+    //setMovies('')
      }
     return (
         <>
-        <form action="" onSubmit={hendleFormSubmit}>
+        <form  onSubmit={hendleFormSubmit}>
                 <input
-                    onChange={hendelChengeInput}
-                    value={query}
-                    name='query'
+                    //onChange={hendelChengeInput}
+                    //value={query}
+                    name='moviename'
                     type="text" 
       autoComplete="off"
       autoFocus

@@ -16,6 +16,13 @@ export async function fetchByTrending (page,perPage) {
     return response.data.results;
 }
  
+// export const fetchBySerch = async (query, page = 1) => {
+//   const response = await axios.get(
+//     `/search/movie'?api_key=${KEY}&page=${page}&query=${query}&language=en-US&include_adult=false`
+//   );
+//   return response.data.results;
+// };
+
 export async function fetchBySerch(query) {
     const response = await axios('search/movie', {
         params:
@@ -23,10 +30,10 @@ export async function fetchBySerch(query) {
           api_key: KEY,
             perPage: 20,
             page:1,
-            query:`${query}`,
+        query:`${query}`,
         }
     })
-    return response.data.results;
+    return response.data.response;
 }
 
 export async function fetchMoviesById(movie_id) {

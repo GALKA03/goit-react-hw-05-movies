@@ -9,19 +9,19 @@ import {MovieReviewsPage} from "../pages/MovieReviewsPage"
 export const App = () => {
   return (
     <Routes>
-      <Route index element={<Layout />}>   
-      <Route path='/movies' element={<HomePage />} /> 
-       <Route path="/movies/:moviesId" element={<MovieSubPage />} >
+  <Route path="/" element={<Layout />}>   
+    <Route index element={<HomePage />} /> 
+      <Route path=":moviesId" element={<MovieSubPage />} >
           <Route path="get-movie-credits" element={<MovieActorsPage/> } />
           <Route path="get-movie-reviews" element={<MovieReviewsPage/>  } />
-      </Route>      
-      </Route>
-        {/* <Route path='movie' element={<MoviePage />} />   */}
-     <Route path="search" element={<MovieSearch/>} >
-          <Route path=":moviesId" element={<MovieSubPage />} /> 
       </Route>   
-      
-      {/* <Route path="*" element={<HomePage />} /> */}
+        <Route path="search" element={<MovieSearch />} >   
+        <Route path=":moviesId" element={<MovieSubPage/>}/> 
+           <Route path="get-movie-credits" element={<MovieActorsPage/> } />
+          <Route path="get-movie-reviews" element={<MovieReviewsPage />} /> */}
+       </Route>
+     {/* </Route>     */}
+  </Route> 
 </Routes>
 
   )
