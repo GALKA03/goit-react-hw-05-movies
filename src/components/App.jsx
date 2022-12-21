@@ -10,17 +10,19 @@ export const App = () => {
   return (
     <Routes>
   <Route path="/" element={<Layout />}>   
-    <Route index element={<HomePage />} /> 
+        <Route index element={<HomePage />} /> 
       <Route path=":moviesId" element={<MovieSubPage />} >
           <Route path="get-movie-credits" element={<MovieActorsPage/> } />
           <Route path="get-movie-reviews" element={<MovieReviewsPage/>  } />
       </Route>   
-        <Route path="search" element={<MovieSearch />} >   
+        <Route path="search" element={<MovieSearch />} > 
         <Route path=":moviesId" element={<MovieSubPage/>}/> 
            <Route path="get-movie-credits" element={<MovieActorsPage/> } />
-          <Route path="get-movie-reviews" element={<MovieReviewsPage />} /> */}
-       </Route>
-     {/* </Route>     */}
+          <Route path="get-movie-reviews" element={<MovieReviewsPage />} /> 
+          </Route>
+        {/* </Route>  */}
+        {/* <Route path="*" element={<HomePage />} /> */}
+     
   </Route> 
 </Routes>
 

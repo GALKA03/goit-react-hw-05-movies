@@ -33,7 +33,7 @@ export async function fetchBySerch(query,page) {
       query
         }
     })
-    return response.data.response;
+    return response.data.results;
 }
 
 export async function fetchMoviesById(movie_id) {

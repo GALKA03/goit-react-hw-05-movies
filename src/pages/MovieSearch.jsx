@@ -14,13 +14,12 @@ const [error, setError] = useState(null);
      console.log('query',query)
     
     useEffect(() => {
-        // if (query===null || query=== '') {
-        //   return  alert('Try again')
-        // }
+        //  if (query===null || query=== '') {
+        //   return  alert('Try again') }
         async function fetchMovies() {      
     const response = await fetchBySerch(query);
             setMovies(response)
- console.log('response',response)
+            console.log('response', response)
     }
 fetchMovies()
     }, [query, page])
