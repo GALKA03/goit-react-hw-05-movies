@@ -68,12 +68,3 @@ export async function fetchMoviesReviews(movie_id,page,results) {
     })
     return response.data.results;
 }
-//const fetchtrendingFilms= 'https://api.themoviedb.org/3/trending/all/week?api_key=<<api_key>'>
-
-//const fetchBySerchFilms= https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false
-
-//const fetchByID=https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
-//const fechAboutActor= 'https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US'
-//const fetchByrevuse= 'https://api.themoviedb.org/3/movie/{movie_id}/reviews?api_key=<<api_key>>&language=en-US&page=1'
-
-//const API_KEY='?api_key=a1426f875d9b25aa0fd82fb82639d8ae'

@@ -45,7 +45,6 @@ const{moviesId}=useParams()
                           <div>
                               <h1>{name}</h1> 
                               <p>{character}</p> 
-                              {/* <p>{ known_for_department}</p>     */}
                          </div>
                                
                 </li> 
