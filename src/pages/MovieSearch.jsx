@@ -20,7 +20,7 @@ const [error, setError] = useState(null);
         async function fetchMovies() {      
     const response = await fetchBySerch(query);
             setMovies(response)
-            console.log('response',response)
+ console.log('response',response)
     }
 fetchMovies()
     }, [query, page])
@@ -34,14 +34,10 @@ fetchMovies()
 const hendleFormSubmit = e => {
     e.preventDefault();
     // if (query===null || query=== '') {
-    //       return  alert('Try again')
-    //     }
-    // if (!setMovies.trim()) {
-    //     alert('Enter the film title')
-    // }
-    const form = e.curenTarget.elemetts.moviename
+    //       return  alert('Try again')}  
+    const form = e.target
     console.log(form)
-//setSearchParams({ movieName:form.elements.query.value})
+setSearchParams({ moviename:form.elements.query.value})
     form.reset()
     //setMovies('')
      }
@@ -51,18 +47,17 @@ const hendleFormSubmit = e => {
                 <input
                     //onChange={hendelChengeInput}
                     //value={query}
-                    name='moviename'
+                    name='query'
                     type="text" 
       autoComplete="off"
       autoFocus
       placeholder="Look for your movie here"/>
              <button type="submit">Submit</button>
-           
             </form>
-            {movies && (
+            {movies  && (
                <> <ul>
                   {movies.map(({ id, title, poster_path, release_date, vote_average,original_title }) => {
-                    // console.log('movies.id',id)
+                     console.log('movies.id',id)
                     return (
                     < li key={id}>
                             <p>{vote_average}</p>
