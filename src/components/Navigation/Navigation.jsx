@@ -8,8 +8,6 @@ let activeStyle = {
 
   };
 
-  //let activeClassName = "undeline";
-
     return (
         <nav>
         <ul className={styles.listLink}>

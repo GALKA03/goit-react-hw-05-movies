@@ -10,42 +10,33 @@ export const App = () => {
   return (
     <Routes>
   <Route path="/" element={<Layout />}>   
-        <Route index element={<HomePage />} /> 
-      <Route path=":moviesId" element={<MovieSubPage />} >
+          <Route index element={<HomePage />} />
+          <Route path="/search" element={<MovieSearch />} /> 
+      <Route path="serch/:moviesId" element={<MovieSubPage />} >
           <Route path="get-movie-credits" element={<MovieActorsPage/> } />
           <Route path="get-movie-reviews" element={<MovieReviewsPage/>  } />
       </Route>   
-        <Route path="search" element={<MovieSearch />} > 
-        <Route path=":moviesId" element={<MovieSubPage/>}/> 
-           <Route path="get-movie-credits" element={<MovieActorsPage/> } />
-          <Route path="get-movie-reviews" element={<MovieReviewsPage />} /> 
-          </Route>
-        {/* </Route>  */}
-        {/* <Route path="*" element={<HomePage />} /> */}
-     
-  </Route> 
+  </Route>  
+          <Route path="*" element={<HomePage />} /> 
 </Routes>
 
   )
 }
 
-// export const App = () => {
-//   return (
-//     <Routes>
-//       <Route path="/" element={<Layout />}>
-//         <Route index element={<HomePage />} />
-//         <Route path="events" element={<EventsPage />}>
-//           <Route path=":eventId" element={<EventSubPage />} />
+//  <Routes>
+//         <Route path="/" element={<NanBar />}>
+//           <Route index element={<Home />} />
+//           <Route path="/movies" element={<Movies />} />
+//           <Route path="/movies/:movieId" element={<MovieDetails />}>
+//             <Route path="reiwers" element={<Reviews />} />
+//             <Route path="cast" element={<Cast />} />
+//           </Route>
 //         </Route>
-//         <Route path="search" element={<SearchEventsPage />}>
-//           <Route path=":eventId" element={<EventSubPage />} />
-//         </Route>
-//         <Route path="events/:eventId/details" element={<EventDetailsPage />} />
-//         <Route path='search/:eventId/details' element={<EventDetailsPage />} />
-//       </Route>
-//     </Routes>
-//   );
-// };
+//         <Route path="*" element={<Home />} />
+// </Routes> 
+
+
+
 // потому что они неправильно сделаны. <Route path="страница с описанием фильма" element={<Компонент />}>
 //             <Route path="первая сабстраница" element={<Компонент />} />
 //             <Route path="вторая сабстраница" element={<Компонент />} />

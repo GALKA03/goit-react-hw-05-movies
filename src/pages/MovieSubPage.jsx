@@ -18,14 +18,10 @@ export const MovieSubPage = () => {
                     <li key={movieId.id}>
                          <p>{movieId.original_title}</p>
                         <p>{movieId.overview}</p>
-                         {/* <video src={movieId.video}></video>  
-                           */}
-                        {/* <p>{movieId.genres}</p> */}
                         <p>{movieId.title}</p>
                     </li>
                     </ul>
-                    <ul>
-                        
+                    <ul>   
                         <li> <Link to='get-movie-credits'>Actors</Link></li>
                         <li><Link to='get-movie-reviews'>Reviews</Link></li>
                     </ul>    
