@@ -3,20 +3,27 @@ import {Layout } from "./Layout/Layout";
  import{HomePage}from "../pages/HomePage"
 import { MovieSearch } from "../pages/MovieSearch";
 import {MovieSubPage} from "../pages/MovieSubPage"
-import { MoviePage } from "../pages/MoviePage"
-import { MovieActorsPage } from "pages/MovieActorsPage";
+import { MovieActorsPage } from "../pages/MovieActorsPage";
 import {MovieReviewsPage} from "../pages/MovieReviewsPage"
 export const App = () => {
   return (
+//./Layout/Layout
+ //../pages/HomePage
+ // ../pages/MovieSearch
+  //../pages/MovieSubPage
+    //../pages/MovieActorsPage
+    //../pages/MovieReviewsPage"
+  //../pages/MovieSubPage
+//./Layout/Layout
     <Routes>
   <Route path="/" element={<Layout />}>   
         <Route index element={<HomePage />} />
-        <Route path=":moviesId" element={<MovieSubPage />} />
+        {/* <Route path=":moviesId" element={<MovieSubPage />} > */}
           <Route path="/search" element={<MovieSearch />} /> 
-      <Route path="search/:moviesId" element={<MovieSubPage />} >
-          <Route path="get-movie-credits" element={<MovieActorsPage/> } />
-          <Route path="get-movie-reviews" element={<MovieReviewsPage/>  } />
-      </Route>   
+       <Route path="search/:moviesId" element={<MovieSubPage />} >
+          <Route path="cast" element={<MovieActorsPage/> } />
+          <Route path="reviews" element={<MovieReviewsPage/>  } />
+       </Route>   
   </Route>  
           <Route path="*" element={<HomePage />} /> 
 </Routes>

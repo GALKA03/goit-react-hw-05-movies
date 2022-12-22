@@ -8,11 +8,11 @@ export const MovieReviewsPage = () => {
     //const[detailse, setDetailse] =useState([])
     const[page, setPage] =useState(1)
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+//   const [loading, setLoading] = useState(false);
 useEffect(() => {
         const fetchResults= async () => {
             try {
-             setLoading(true);
+            //  setLoading(true);
                 const response = await fetchMoviesReviews(moviesId)
                 setResults( response)
                
@@ -20,9 +20,9 @@ useEffect(() => {
          catch(error){
         setError('Ooops. Something went wrong...')
             } 
-            finally {
-        setLoading(false);
-      }
+    //         finally {
+    //     setLoading(false);
+    //   }
      }   
         fetchResults()
     },[moviesId])

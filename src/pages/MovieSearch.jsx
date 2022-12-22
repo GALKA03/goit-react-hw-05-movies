@@ -1,7 +1,7 @@
 import { useState,useEffect } from 'react';
-import { fetchBySerch } from '../services/fetchApi';
+import { fetchBySearch } from '../services/fetchApi';
 import { Link,Outlet,useSearchParams } from 'react-router-dom';
-
+import {Loader} from "../components/Loading/Loader"
 export const MovieSearch = () => {
     const [movies, setMovies] = useState([]);
     const[serchParams, setSearchParams]=useSearchParams()
@@ -12,14 +12,25 @@ const [error, setError] = useState(null);
  const query = serchParams.get('moviename')
     
     useEffect(() => {
-        //  if (query===null || query=== '') {
+        //   if (query===null || query=== '') {
         //   return  alert('Try again') }
-        async function fetchMovies() {      
-    const response = await fetchBySerch(query);
+       
+       const fetchMoviesSearch = async () => {
+        try {
+            setLoading(true);
+            const response = await fetchBySearch(query)
             setMovies(response)
+            console.log('response',response)
+        }  
+            catch(error) {
+                setError('Ooops. Something went wrong...')
+       }     
+           finally {
+        setLoading(false);
+      } 
     }
-fetchMovies()
-    }, [query, page])
+fetchMoviesSearch()
+    }, [query])
 // const hendelChengeInput = e => {
 //     setMovies(e.target.toLowerCase());
 //     console.log('e.target.value',e.target.value)
@@ -27,14 +38,16 @@ fetchMovies()
             
 const hendleFormSubmit = e => {
     e.preventDefault();
-    // if (query===null || query=== '') {
-    //       return  alert('Try again')}  
+    if (query === null || query === '') {
+        return
+    } 
     const form = e.target
 setSearchParams({ moviename:form.elements.query.value})
     form.reset()
      }
     return (
         <>
+            
         <form  onSubmit={hendleFormSubmit}>
                 <input
                     //onChange={hendelChengeInput}
@@ -46,14 +59,14 @@ setSearchParams({ moviename:form.elements.query.value})
       placeholder="Look for your movie here"/>
              <button type="submit">Submit</button>
             </form>
+ {loading && <Loader />} 
             {movies  && (
                <> <ul>
                   {movies.map(({ id, title, poster_path, release_date, vote_average,original_title }) => {
-                     console.log('movies.id',id)
                     return (
                     < li key={id}>
                             <p>{vote_average}</p>
-                             <Link to={id.toString()}><img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={original_title} /> </Link> 
+                             <Link to={`/search/${id}`}><img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={original_title} /> </Link> 
                         <div>    
                              <h1>{title}</h1>
                         <p>{release_date}</p>

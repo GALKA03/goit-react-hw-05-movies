@@ -23,14 +23,14 @@ export async function fetchByTrending (page,perPage) {
 //   return response.data.results;
 // };
 
-export async function fetchBySerch(query,page) {
+export async function fetchBySearch(query) {
     const response = await axios('search/movie', {
         params:
         {
           api_key: KEY,
             perPage: 20,
             page:1,
-      query
+            query,
         }
     })
     return response.data.results;

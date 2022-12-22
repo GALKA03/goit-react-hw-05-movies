@@ -15,7 +15,7 @@ let activeStyle = {
                 to='/' end
                 style={({ isActive }) =>isActive ? activeStyle : undefined}
                 className={styles.link}
-                >Movies</NavLink></li>
+                >HOME</NavLink></li>
                 {/* <li><NavLink 
                     to='/movie'
                     style={({ isActive }) =>isActive ? activeStyle : undefined} 
@@ -27,7 +27,7 @@ let activeStyle = {
                      style={({ isActive }) =>isActive ? activeStyle : undefined} 
                 className={styles.link}
                     >
-                        Serch
+                        MOVIES
                     </NavLink>
                 </li>
             </ul>

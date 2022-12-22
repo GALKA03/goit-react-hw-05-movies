@@ -22,8 +22,8 @@ export const MovieSubPage = () => {
                     </li>
                     </ul>
                     <ul>   
-                        <li> <Link to='get-movie-credits'>Actors</Link></li>
-                        <li><Link to='get-movie-reviews'>Reviews</Link></li>
+                        <li> <Link to='cast'>Actors</Link></li>
+                        <li><Link to='reviews'>Reviews</Link></li>
                     </ul>    
                 </div>
               

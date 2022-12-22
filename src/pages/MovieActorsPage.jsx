@@ -9,12 +9,12 @@ const{moviesId}=useParams()
 
     const [cast, setCast] = useState([]);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+//   const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchCast = async () => {
             try {
-             setLoading(true);
+            //  setLoading(true);
                 const response = await fetchMoviesByActors(moviesId)
                 const arr = response.cast
                 setCast(arr)
@@ -26,9 +26,9 @@ const{moviesId}=useParams()
          catch(error){
         setError('Ooops. Something went wrong...')
             } 
-            finally {
-        setLoading(false);
-      }
+    //         finally {
+    //     setLoading(false);
+    //   }
      }   
         fetchCast()
     },[moviesId])
@@ -41,7 +41,7 @@ const{moviesId}=useParams()
                  {cast.map(({id,profile_path,original_name,name,character}) =>{
                   return (
                      <li key={id}>
-                          <img src={`https://image.tmdb.org/t/p/w300${profile_path}`} alt={original_name} /> 
+                          <img src={`https://image.tmdb.org/t/p/w500/${profile_path}`} alt={original_name} /> 
                           <div>
                               <h1>{name}</h1> 
                               <p>{character}</p> 
