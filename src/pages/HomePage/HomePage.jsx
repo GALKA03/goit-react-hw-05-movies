@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react'
-import { Link, Outlet, useLocation, useRef} from 'react-router-dom';
-import { fetchByTrending } from '../services/fetchApi'
+import { Link, Outlet, useLocation} from 'react-router-dom';
+import { fetchByTrending } from '../../services/fetchApi'
 import { Loader } from 'components/Loading/Loader';
+import style from '../HomePage/HomePage.module.css'
+
+
 export const HomePage = () => {
     const [movies, setMovies] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const location = useLocation()
-    const firstRender= useRef(null) 
+    // const firstRender= useRef(null) 
     //посмотреть репету про useRefрефс для исключения двойных запросов
     useEffect(() => {
         const fetchTrending = async () => {
@@ -30,16 +33,16 @@ export const HomePage = () => {
     return (
     
         movies && ( 
-            <>
-                <ul>
+            <div className={style.conteiner}>
+                <ul className={style.list}>
                   {loading && <Loader />}       
                 {movies.map(({ id, title, poster_path, release_date, vote_average,original_title }) => {
                     // const toStrig= id.toSrting()
                     return (
-                    < li key={id}>
+                    < li key={id} className={style.item} >
                             <p>{vote_average}</p>
                             <Link to={`/movie/${id}`} state ={{from:location}}><img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={original_title} /> </Link>
-                        <div>    
+                        <div className={style.info}>    
                              <h1>{title}</h1>
                         <p>{release_date}</p>
                             </div>
@@ -48,7 +51,7 @@ export const HomePage = () => {
                 })}     
             </ul >
          <Outlet/>    
-            </>
+            </div>
             )
             
     )

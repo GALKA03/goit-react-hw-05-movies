@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 //import { UseFetchActors } from "../hooks/UseFetchByActors"
 import { Outlet } from "react-router-dom"
 import { useParams } from "react-router-dom";
-import{fetchMoviesByActors} from "../services/fetchApi"
+import{fetchMoviesByActors} from "../../services/fetchApi"
 
 export const MovieActorsPage = () => {
 const{moviesId}=useParams()

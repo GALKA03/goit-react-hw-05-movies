@@ -1,7 +1,9 @@
 import { useState,useEffect } from 'react';
 import { fetchBySearch } from 'services/fetchApi';
 import { Link,Outlet,useSearchParams } from 'react-router-dom';
-import {Loader} from "../components/Loading/Loader"
+import { Loader } from "../../components/Loading/Loader"
+import styles from '../MovieSearch/MovieSearch.module.css'
+
 export const MovieSearch = () => {
     const [movies, setMovies] = useState([]);
     const[serchParams, setSearchParams]=useSearchParams()
@@ -48,8 +50,9 @@ setSearchParams({ moviename:form.elements.query.value})
     return (
         <>
             
-        <form  onSubmit={hendleFormSubmit}>
+        <form className={styles.form} onSubmit={hendleFormSubmit}>
                 <input
+                    className={styles.input}
                     //onChange={hendelChengeInput}
                     //value={query}
                     name='query'
@@ -57,10 +60,10 @@ setSearchParams({ moviename:form.elements.query.value})
       autoComplete="off"
       autoFocus
       placeholder="Look for your movie here"/>
-             <button type="submit">Submit</button>
+             <button className={styles.button} type="submit"></button>
             </form>
  {loading && <Loader />} 
-            {movies.length >0 && (
+            {movies.length > 0 && (
                <> <ul>
                   {movies.map(({ id, title, poster_path, release_date, vote_average,original_title }) => {
                     return (
