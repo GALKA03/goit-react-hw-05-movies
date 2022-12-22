@@ -33,14 +33,14 @@ useEffect(() => {
         results && (
             <>
                 <ul>
-                {results.map(({id,author,content,created_at,url }) => {
+                {results.map(({id,author,content}) => {
                     return (
                         <li key={id}>
                             <div>
                                 <h1>{author}</h1>
                                 <p>{content}</p>
-                                <p>created:{created_at}</p>
-                                <a href={url}>{url}</a>
+                                {/* <p>created:{created_at}</p>
+                                <a href={url}>{url}</a> */}
                             </div>
                            
 

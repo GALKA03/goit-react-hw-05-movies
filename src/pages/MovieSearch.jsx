@@ -1,5 +1,5 @@
 import { useState,useEffect } from 'react';
-import { fetchBySearch } from '../services/fetchApi';
+import { fetchBySearch } from 'services/fetchApi';
 import { Link,Outlet,useSearchParams } from 'react-router-dom';
 import {Loader} from "../components/Loading/Loader"
 export const MovieSearch = () => {
@@ -12,15 +12,15 @@ const [error, setError] = useState(null);
  const query = serchParams.get('moviename')
     
     useEffect(() => {
-        //   if (query===null || query=== '') {
-        //   return  alert('Try again') }
+          if (query===null || query=== '') {
+          return}
        
        const fetchMoviesSearch = async () => {
         try {
             setLoading(true);
-            const response = await fetchBySearch(query)
+            const response = await fetchBySearch(query,page)
             setMovies(response)
-            console.log('response',response)
+           // console.log('movies',movies)
         }  
             catch(error) {
                 setError('Ooops. Something went wrong...')
@@ -30,7 +30,7 @@ const [error, setError] = useState(null);
       } 
     }
 fetchMoviesSearch()
-    }, [query])
+    }, [query,page])
 // const hendelChengeInput = e => {
 //     setMovies(e.target.toLowerCase());
 //     console.log('e.target.value',e.target.value)
@@ -38,9 +38,9 @@ fetchMoviesSearch()
             
 const hendleFormSubmit = e => {
     e.preventDefault();
-    if (query === null || query === '') {
-        return
-    } 
+    // if (query === null || query === '') {
+    //     return
+    // } 
     const form = e.target
 setSearchParams({ moviename:form.elements.query.value})
     form.reset()
@@ -60,13 +60,13 @@ setSearchParams({ moviename:form.elements.query.value})
              <button type="submit">Submit</button>
             </form>
  {loading && <Loader />} 
-            {movies  && (
+            {movies.length >0 && (
                <> <ul>
                   {movies.map(({ id, title, poster_path, release_date, vote_average,original_title }) => {
                     return (
                     < li key={id}>
                             <p>{vote_average}</p>
-                             <Link to={`/search/${id}`}><img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={original_title} /> </Link> 
+                             <Link to={`/movie/${id}`}><img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={original_title} /> </Link> 
                         <div>    
                              <h1>{title}</h1>
                         <p>{release_date}</p>

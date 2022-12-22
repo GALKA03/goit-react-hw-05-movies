@@ -4,12 +4,12 @@ const KEY = "a1426f875d9b25aa0fd82fb82639d8ae"
 
 axios.defaults.baseURL= 'https://api.themoviedb.org/3/'
 //?api_key=<<api_key>>&language=en-US&page=1&include_adult=false
-export async function fetchByTrending (page,perPage) {
+export async function fetchByTrending (page) {
     const response = await axios('trending/movie/week',{
         params:
         {
            api_key: KEY,
-            perPage: 20,
+            total_pages: 20,
             page,
         }    
     })
@@ -23,18 +23,33 @@ export async function fetchByTrending (page,perPage) {
 //   return response.data.results;
 // };
 
+// export async function fetchBySearch(query,) {
+//     const response = await axios('search/movie', {
+//         params:
+//         {
+//           api_key: KEY,
+//             total_pages: 20,
+//             page:1,
+//             query,
+//         }
+//     })
+//     return response.data.results;
+// }
 export async function fetchBySearch(query) {
-    const response = await axios('search/movie', {
+    const response = await axios('search/movie',{
         params:
         {
-          api_key: KEY,
-            perPage: 20,
+           api_key: KEY,
+            total_pages: 20,
             page:1,
-            query,
-        }
+             query:`${query}`
+        }    
     })
     return response.data.results;
 }
+
+
+
 
 export async function fetchMoviesById(movie_id) {
     const response = await axios(`movie/${movie_id}`, {

@@ -23,7 +23,7 @@ let activeStyle = {
 
     >Movies</NavLink></li>*/}
                 <li>  
-                    <NavLink to='/search'
+                    <NavLink to='/movie'
                      style={({ isActive }) =>isActive ? activeStyle : undefined} 
                 className={styles.link}
                     >
