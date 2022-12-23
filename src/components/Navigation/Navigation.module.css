@@ -3,6 +3,7 @@ display:flex;
 align-items: center;
 justify-content: center;
 list-style: none;
+padding-top: 80px;
  
    font-size: 30px;
     font-weight: 900;
@@ -10,12 +11,14 @@ list-style: none;
 
 .link{
     text-decoration: none;
-    color: rgb(84, 58, 34);
+    color: rgb(11, 8, 4);
 margin-right: 20px;
 }
 .link:not(:last-child){
     margin-right: 20px;
 }
-/* .link:active{
-    color: rgb(255, 0, 0);
-} */
+.link:active{
+    text-decoration:underline;
+    color: rgb(165, 146, 146);
+    /* color: rgb(86, 82, 77); */
+}

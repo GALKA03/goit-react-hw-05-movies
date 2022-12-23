@@ -24,7 +24,7 @@ export const App = () => {
   return (
     <>
       
-       <MainConteiner/>  
+       {/* <MainConteiner/>   */}
      <Suspense fallback={<Loader/>}>    
     <Routes>
   <Route path="/" element={<Layout />}>   

@@ -1,9 +1,10 @@
 import { NavLink } from "react-router-dom"
 import styles from "components/Navigation/Navigation.module.css"
 export const Navigation = () => {
-let activeStyle = {
-    textDecoration: "undeline",
-    color: "brown",
+    let activeStyle = {
+     
+    textDecoration: "underline",
+    color: "bisque",
     fontSize: '30',
 
   };
