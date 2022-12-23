@@ -13,28 +13,10 @@ export async function fetchByTrending (page) {
             page,
         }    
     })
-    return response.data.results;
+    return response.data;
 }
  
-// export const fetchBySerch = async (query, page = 1) => {
-//   const response = await axios.get(
-//     `/search/movie'?api_key=${KEY}&page=${page}&query=${query}&language=en-US&include_adult=false`
-//   );
-//   return response.data.results;
-// };
 
-// export async function fetchBySearch(query,) {
-//     const response = await axios('search/movie', {
-//         params:
-//         {
-//           api_key: KEY,
-//             total_pages: 20,
-//             page:1,
-//             query,
-//         }
-//     })
-//     return response.data.results;
-// }
 export async function fetchBySearch(query) {
     const response = await axios('search/movie',{
         params:
@@ -45,7 +27,7 @@ export async function fetchBySearch(query) {
              query:`${query}`
         }    
     })
-    return response.data.results;
+    return response.data;
 }
 
 

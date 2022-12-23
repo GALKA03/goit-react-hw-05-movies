@@ -1,29 +1,47 @@
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import {toast} from 'react-toastify';
 import { fetchBySearch } from 'services/fetchApi';
-import { Link,Outlet,useSearchParams } from 'react-router-dom';
+import { Link,Outlet,useSearchParams,useLocation } from 'react-router-dom';
 import { Loader } from "../../components/Loading/Loader"
 import styles from '../MovieSearch/MovieSearch.module.css'
+import { ButtonMore } from 'components/ButtonMore/ButtonMore';
 
-export const MovieSearch = () => {
+ const MovieSearch = () => {
     const [movies, setMovies] = useState([]);
     const[serchParams, setSearchParams]=useSearchParams()
-    const[page,setPage]=useState(1)
+    const [page, setPage] = useState(1);
 const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-    
+    const [total, setTotal] = useState(0);
+
+    const location = useLocation()
  const query = serchParams.get('moviename')
     
     useEffect(() => {
-          if (query===null || query=== '') {
-          return}
+        if (!query) {
+            //   toast.info('No movies found. Try again!');
+              return
+          }
        
        const fetchMoviesSearch = async () => {
         try {
             setLoading(true);
-            const response = await fetchBySearch(query,page)
-            setMovies(response)
-           // console.log('movies',movies)
-        }  
+           const { results, total_pages, total_results } = await fetchBySearch(query, page) 
+             setMovies(results)
+            setTotal(total_results)
+    
+            const totalPages = Math.ceil(total_pages / 20);
+          if (results.length === 0) {
+            toast.info('No images found. Please submit another query!');
+          return
+          }
+           if (page === totalPages) {
+         toast("You've reached the end of search results.");
+           }
+        //   if (page === 1) {
+        //    toast.success(`Hooray! We found ${total_results} images.`);
+        //   }
+         }  
             catch(error) {
                 setError('Ooops. Something went wrong...')
        }     
@@ -33,10 +51,6 @@ const [error, setError] = useState(null);
     }
 fetchMoviesSearch()
     }, [query,page])
-// const hendelChengeInput = e => {
-//     setMovies(e.target.toLowerCase());
-//     console.log('e.target.value',e.target.value)
-//   };
             
 const hendleFormSubmit = e => {
     e.preventDefault();
@@ -44,9 +58,20 @@ const hendleFormSubmit = e => {
     //     return
     // } 
     const form = e.target
-setSearchParams({ moviename:form.elements.query.value})
+setSearchParams({ moviename:form.elements.query.value.trim()})
     form.reset()
-     }
+    }
+    const onLoadMore = () => {
+        setPage(prevNumber => prevNumber + 1)
+    }  
+    
+     const loadMovies = movies.length !== 0;
+ console.log('loadImages',loadMovies)
+  const isLastPage = movies.length === total;
+  console.log('isLastPage',isLastPage)
+  const loadMoreBtn =loadMovies &&  !loading && !isLastPage;
+  console.log('loadMoreBtn',loadMoreBtn)
+
     return (
         <>
             
@@ -62,23 +87,25 @@ setSearchParams({ moviename:form.elements.query.value})
       placeholder="Look for your movie here"/>
              <button className={styles.button} type="submit"></button>
             </form>
+            {error && alert(error.message)}
  {loading && <Loader />} 
-            {movies.length > 0 && (
-               <> <ul>
+            {loadMovies && (
+               <> <ul className={styles.list}>
                   {movies.map(({ id, title, poster_path, release_date, vote_average,original_title }) => {
                     return (
-                    < li key={id}>
-                            <p>{vote_average}</p>
-                             <Link to={`/movie/${id}`}><img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={original_title} /> </Link> 
-                        <div>    
-                             <h1>{title}</h1>
-                        <p>{release_date}</p>
+                    < li key={id} className={styles.item}>
+                            <p className={styles.reiting}>{vote_average}</p>
+                             <Link to={`/movie/${id}`} state={{ from: location }}><img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={original_title} /> </Link> 
+                        <div className={styles.info}>    
+                             <h1 className={styles.title}>{title}</h1>
+                        <p className={styles.realase}>{release_date}</p>
                             </div>
                     </li>    
                     )    
                   })}
                    
                 </ul >
+                   {loadMoreBtn &&<ButtonMore onLoadMore={onLoadMore}/>}
                     <Outlet/>
 </> 
             )
@@ -87,3 +114,4 @@ setSearchParams({ moviename:form.elements.query.value})
         </>
     )
 }
+export default MovieSearch;

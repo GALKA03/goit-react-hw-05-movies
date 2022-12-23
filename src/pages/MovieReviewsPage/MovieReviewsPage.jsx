@@ -1,7 +1,7 @@
 import { fetchMoviesReviews } from "../../services/fetchApi";
 import { useState, useEffect } from "react";
 import { Outlet, useParams } from "react-router-dom";
-export const MovieReviewsPage = () => { 
+ const MovieReviewsPage = () => { 
     const { moviesId } = useParams()
  
     const [results, setResults] = useState([]);
@@ -54,3 +54,4 @@ useEffect(() => {
      
   )  
 }
+export default MovieReviewsPage;

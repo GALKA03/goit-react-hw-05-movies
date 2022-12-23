@@ -4,13 +4,13 @@ import { Outlet } from "react-router-dom"
 import { useParams } from "react-router-dom";
 import{fetchMoviesByActors} from "../../services/fetchApi"
 
-export const MovieActorsPage = () => {
+ const MovieActorsPage = () => {
 const{moviesId}=useParams()
 
     const [cast, setCast] = useState([]);
   const [error, setError] = useState(null);
 //   const [loading, setLoading] = useState(false);
-
+// const location = useLocation();
     useEffect(() => {
         const fetchCast = async () => {
             try {
@@ -58,3 +58,4 @@ const{moviesId}=useParams()
       
    ) 
 }
+export default MovieActorsPage;

@@ -1,7 +1,7 @@
 import {Navigation} from '../Navigation/Navigation'
 import { Outlet } from 'react-router-dom'
 
-export const Layout = () => {
+ const Layout = () => {
     return (
         <>
             <header>
@@ -12,3 +12,4 @@ export const Layout = () => {
       </>  
     )
 }
+export default Layout;
