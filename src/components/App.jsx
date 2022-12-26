@@ -2,8 +2,8 @@ import { ToastContainer} from 'react-toastify';
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from "react-router-dom";
  import { Loader } from './Loading/Loader';
-import styles from 'components/App.module.css'
-import MainConteiner from "components/MainConteiner/MainConteiner"
+// import styles from 'components/App.module.css'
+// import MainConteiner from "components/MainConteiner/MainConteiner"
 
 // import  Layout  from "./Layout/Layout";
 //  import HomePage from "../pages/HomePage/HomePage"

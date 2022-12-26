@@ -9,7 +9,6 @@ const{moviesId}=useParams()
 
     const [cast, setCast] = useState([]);
   const [error, setError] = useState(null);
-//   const [loading, setLoading] = useState(false);
 // const location = useLocation();
     useEffect(() => {
         const fetchCast = async () => {
@@ -26,9 +25,7 @@ const{moviesId}=useParams()
          catch(error){
         setError('Ooops. Something went wrong...')
             } 
-    //         finally {
-    //     setLoading(false);
-    //   }
+    
      }   
         fetchCast()
     },[moviesId])
@@ -37,6 +34,7 @@ const{moviesId}=useParams()
     return (
         cast && (
             <>
+                 {error && alert(error.message)}
                 <ul>
                  {cast.map(({id,profile_path,original_name,name,character}) =>{
                   return (

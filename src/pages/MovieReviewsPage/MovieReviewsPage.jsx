@@ -6,7 +6,7 @@ import { Outlet, useParams } from "react-router-dom";
  
     const [results, setResults] = useState([]);
     //const[detailse, setDetailse] =useState([])
-    const[page, setPage] =useState(1)
+    // const[page, setPage] =useState(1)
   const [error, setError] = useState(null);
 //   const [loading, setLoading] = useState(false);
 useEffect(() => {
@@ -32,6 +32,7 @@ useEffect(() => {
     return (
         results && (
             <>
+                 {error && alert(error.message)}
                 <ul>
                 {results.map(({id,author,content}) => {
                     return (

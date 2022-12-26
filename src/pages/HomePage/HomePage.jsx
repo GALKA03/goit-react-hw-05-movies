@@ -27,7 +27,7 @@ const HomePage = () => {
             setLoading(true);
             const response = await fetchByTrending(page)
             //const pageNumber = response.page
-const { results, total_pages, total_results }=response;
+const { results, total_pages }=response;
             console.log('response',response)
             setMovies(results)
             setTotal(response.total_results)

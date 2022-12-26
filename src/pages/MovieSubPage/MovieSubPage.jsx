@@ -1,7 +1,7 @@
 import { UseFetchMovie } from "../../hooks/UseFetchMovie";
 import { Outlet, Link, useNavigate, useLocation } from "react-router-dom";
 // import { useState, useEffect } from "react";
-import styles from '../MovieSearch/MovieSearch.module.css'
+// import styles from '../MovieSearch/MovieSearch.module.css'
 // import{fetchMoviesById} from "../services/fetchApi"
 const MovieSubPage = () => {
     const movieId = UseFetchMovie();
