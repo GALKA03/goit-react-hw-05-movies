@@ -17,13 +17,13 @@ export async function fetchByTrending (page) {
 }
  
 
-export async function fetchBySearch(query) {
+export async function fetchBySearch(query,page=1) {
     const response = await axios('search/movie',{
         params:
         {
            api_key: KEY,
             total_pages: 20,
-            page:1,
+            page:page,
              query:`${query}`
         }    
     })
