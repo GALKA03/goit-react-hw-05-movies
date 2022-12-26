@@ -30,9 +30,6 @@ export async function fetchBySearch(query) {
     return response.data;
 }
 
-
-
-
 export async function fetchMoviesById(movie_id) {
     const response = await axios(`movie/${movie_id}`, {
         params:

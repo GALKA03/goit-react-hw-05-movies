@@ -4,6 +4,7 @@ import { Link, Outlet, useLocation} from 'react-router-dom';
 import { fetchByTrending } from '../../services/fetchApi'
 import { Loader } from 'components/Loading/Loader';
 import { ButtonMore } from 'components/ButtonMore/ButtonMore';
+import  Pagination  from 'components/Pagination/Pagination';
 import style from '../HomePage/HomePage.module.css'
 
 
@@ -12,24 +13,27 @@ const HomePage = () => {
     const [page, setPage]=useState(1)
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState(20);
+  // const [currePage, setPerPAge] = useState(20)
     const location = useLocation();
     // console.log('locationHome',location)
     // const firstRender= useRef(null) 
     //посмотреть репету про useRefрефс для исключения двойных запросов
-    useEffect(() => {
+    
+  
+  useEffect(() => {
         const fetchTrending = async () => {
         try {
             setLoading(true);
             const response = await fetchByTrending(page)
             //const pageNumber = response.page
 const { results, total_pages, total_results }=response;
-            //console.log('pageNumber',pageNumber)
+            console.log('response',response)
             setMovies(results)
             setTotal(response.total_results)
             // setPage(pageNumber)
          //console.log('resp',response)
-           const totalPages = Math.ceil(total_pages / 20);
+           const totalPages = Math.ceil(total_pages /20);
            if (response.results.length === 0) {
             toast.info('No images found. Please submit another query!');
           return
@@ -37,11 +41,6 @@ const { results, total_pages, total_results }=response;
            if (page === totalPages) {
          toast("You've reached the end of search results.");
            }
-        //   if (page === 1) {
-        //    toast.success(`Hooray! We found ${total_results} images.`);
-        //   }
-         
-        
         }
       catch(error){
         setError('Ooops. Something went wrong...')
@@ -52,9 +51,14 @@ const { results, total_pages, total_results }=response;
       fetchTrending()
     }, [page])
 
-    const onLoadMore = () => {
-       setPage(prevPage => prevPage  + 1)
-    }    
+  const lastMovieIndex = page * total;
+  const firstMovieIndex = lastMovieIndex - total;
+  // const currentMovie = movies.slise(firstMovieIndex,lastMovieIndex)
+  const paginate= pageNumber=>setPage(pageNumber)
+  
+  // const onLoadMore = () => {
+  //      setPage(prevPage => prevPage  + 1)
+  //   }    
     
  const loadMovies = movies.length !== 0;
 //  console.log('loadImages',loadMovies)
@@ -69,7 +73,8 @@ const { results, total_pages, total_results }=response;
          <div className={style.conteiner}>
              {error && alert(error.message)}
                 <ul className={style.list}>
-                  {loading && <Loader />}       
+            {loading && <Loader />} 
+            
                 {movies.map(({ id, title, poster_path, release_date, vote_average,original_title }) => {  
                     return (
                     < li key={id} className={style.item} >
@@ -84,8 +89,9 @@ const { results, total_pages, total_results }=response;
                 })}     
                 </ul >
               
-              {loadMoreBtn && <ButtonMore onLoadMore={onLoadMore}/> } 
-         <Outlet/>    
+               {/* {loadMoreBtn && <ButtonMore onLoadMore={onLoadMore}/> }   */}
+          <Outlet />  
+          <Pagination total={total} totalPages={movies.length} paginate={paginate} /> 
             </div>
         
             )
