@@ -4,7 +4,7 @@ import { Link, Outlet, useLocation} from 'react-router-dom';
 import { fetchByTrending } from '../../services/fetchApi'
 import { Loader } from 'components/Loading/Loader';
 import { ButtonMore } from 'components/ButtonMore/ButtonMore';
-import  Pagination  from 'components/Pagination/Pagination';
+// import  Pagination  from 'components/Pagination/Pagination';
 import style from '../HomePage/HomePage.module.css'
 
 
@@ -51,14 +51,14 @@ const { results, total_pages, total_results }=response;
       fetchTrending()
     }, [page])
 
-  const lastMovieIndex = page * total;
-  const firstMovieIndex = lastMovieIndex - total;
-  // const currentMovie = movies.slise(firstMovieIndex,lastMovieIndex)
-  const paginate= pageNumber=>setPage(pageNumber)
+//   const lastMovieIndex = page * total;
+//   const firstMovieIndex = lastMovieIndex - total;
+//  const currentMovie = movies.slise(firstMovieIndex,lastMovieIndex)
+//   const paginate= pageNumber=>setPage(pageNumber)
   
-  // const onLoadMore = () => {
-  //      setPage(prevPage => prevPage  + 1)
-  //   }    
+  const onLoadMore = () => {
+       setPage(prevPage => prevPage  + 1)
+    }    
     
  const loadMovies = movies.length !== 0;
 //  console.log('loadImages',loadMovies)
@@ -89,9 +89,9 @@ const { results, total_pages, total_results }=response;
                 })}     
                 </ul >
               
-               {/* {loadMoreBtn && <ButtonMore onLoadMore={onLoadMore}/> }   */}
+               {loadMoreBtn && <ButtonMore onLoadMore={onLoadMore}/> }  
           <Outlet />  
-          <Pagination total={total} totalPages={movies.length} paginate={paginate} /> 
+          {/* <Pagination total={total} totalPages={movies.length} paginate={paginate} />  */}
             </div>
         
             )
