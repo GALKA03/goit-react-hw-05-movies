@@ -12,8 +12,8 @@ import depositphotos from '../MovieSearch/depositphotos.jpg'
     const [page, setPage] = useState(1);
 const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [total, setTotal] = useState(0);
-
+    const [totalResults, setTotalResults] = useState(0);
+const [totalPages,settotalPages]=useState(20);
     const location = useLocation()
  const query = serchParams.get('moviename')
     
@@ -29,7 +29,7 @@ const [error, setError] = useState(null);
            const response = await fetchBySearch(query, page) 
      const  { results, total_pages, total_results }=response;
           setMovies(results)
-          setTotal(total_results)
+          setTotalResults(total_results)
     console.log('response',response)
             const totalPages = Math.ceil(total_pages / 20);
           if (results.length === 0) {
@@ -68,7 +68,7 @@ setSearchParams({ moviename:form.elements.query.value.trim()})
     
      const loadMovies = movies.length !== 0;
  //console.log('loadImages',loadMovies)
-  const isLastPage = movies.length === total;
+  const isLastPage = movies.length === totalResults;
   //console.log('isLastPage',isLastPage)
   const loadMoreBtn =loadMovies &&  !loading && !isLastPage;
   //console.log('loadMoreBtn',loadMoreBtn)
