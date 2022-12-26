@@ -28,18 +28,18 @@ const HomePage = () => {
             const response = await fetchByTrending(page)
             //const pageNumber = response.page
 const { results, total_pages }=response;
-            console.log('response',response)
+            // console.log('response',response)
             setMovies(results)
             setTotal(response.total_results)
             // setPage(pageNumber)
          //console.log('resp',response)
            const totalPages = Math.ceil(total_pages /20);
            if (response.results.length === 0) {
-            toast.info('No images found. Please submit another query!');
+            alert('No images found. Please submit another query!');
           return
           }
            if (page === totalPages) {
-         toast("You've reached the end of search results.");
+         alert("You've reached the end of search results.");
            }
         }
       catch(error){
@@ -89,7 +89,8 @@ const { results, total_pages }=response;
                 })}     
                 </ul >
               
-               {loadMoreBtn && <ButtonMore onLoadMore={onLoadMore}/> }  
+          {loadMoreBtn && <ButtonMore onLoadMore={onLoadMore} />
+          }  
           <Outlet />  
           {/* <Pagination total={total} totalPages={movies.length} paginate={paginate} />  */}
             </div>

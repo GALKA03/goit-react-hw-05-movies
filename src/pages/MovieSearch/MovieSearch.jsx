@@ -90,8 +90,6 @@ setSearchParams({ moviename:form.elements.query.value.trim()})
             {error && alert(error.message)}
         {loading && <Loader />} 
     
-         
-      
             {loadMovies ? (
                <> <ul className={styles.list}>
                   {movies.map(({ id, title, poster_path, release_date, vote_average,original_title }) => {
@@ -120,7 +118,7 @@ setSearchParams({ moviename:form.elements.query.value.trim()})
        height: "auto",
       }}
             src={depositphotos} alt="Let`s watch movies" />}
-            
+             {loadMoreBtn &&<ButtonMore onLoadMore={onLoadMore}/>}
         </>
     )
 }
