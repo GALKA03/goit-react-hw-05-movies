@@ -1,3 +1,4 @@
+import {toast} from 'react-toastify';
 import { useState, useEffect } from 'react'
 import { Link, Outlet, useLocation} from 'react-router-dom';
 import { fetchByTrending } from '../../services/fetchApi'
@@ -21,13 +22,26 @@ const HomePage = () => {
         try {
             setLoading(true);
             const response = await fetchByTrending(page)
-            const pageNumber = response.page
-
-            console.log('pageNumber',pageNumber)
-            setMovies(response.results)
+            //const pageNumber = response.page
+const { results, total_pages, total_results }=response;
+            //console.log('pageNumber',pageNumber)
+            setMovies(results)
             setTotal(response.total_results)
             // setPage(pageNumber)
-         console.log('resp',response)
+         //console.log('resp',response)
+           const totalPages = Math.ceil(total_pages / 20);
+           if (response.results.length === 0) {
+            toast.info('No images found. Please submit another query!');
+          return
+          }
+           if (page === totalPages) {
+         toast("You've reached the end of search results.");
+           }
+        //   if (page === 1) {
+        //    toast.success(`Hooray! We found ${total_results} images.`);
+        //   }
+         
+        
         }
       catch(error){
         setError('Ooops. Something went wrong...')
@@ -42,21 +56,21 @@ const HomePage = () => {
        setPage(prevPage => prevPage  + 1)
     }    
     
-    const loadMovies = movies.length !== 0;
+ const loadMovies = movies.length !== 0;
 //  console.log('loadImages',loadMovies)
   const isLastPage = movies.length === total;
 //   console.log('isLastPage',isLastPage)
   const loadMoreBtn =loadMovies &&  !loading && !isLastPage;
 //   console.log('loadMoreBtn',loadMoreBtn)
     return (
-   
+  
        loadMovies && (
-        
-            <div className={style.conteiner}>
+       
+         <div className={style.conteiner}>
+             {error && alert(error.message)}
                 <ul className={style.list}>
                   {loading && <Loader />}       
-                {movies.map(({ id, title, poster_path, release_date, vote_average,original_title }) => {
-                    // const toStrig= id.toSrting()
+                {movies.map(({ id, title, poster_path, release_date, vote_average,original_title }) => {  
                     return (
                     < li key={id} className={style.item} >
                             <p>{vote_average}</p>

@@ -28,6 +28,11 @@
         /* background: url("https://farm9.staticflickr.com/8088/8363737128_b76782c7a2_b.jpg") no-repeat center center; */
         background-size: cover;
 }
+.footer{
+    width: auto;
+    height: 100px;
+    background-color: rgb(103, 98, 172);
+}
 
 /* $bronze: #130d0a;
 $white: #fff;

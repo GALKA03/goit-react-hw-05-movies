@@ -1,3 +1,10 @@
-export const Error= ({ text}) => {
-  return <p>{text}</p>;
+import error from '../Error/error.png'
+
+export const Error = () => {
+  return (
+    <div>
+     <img src={error} alt="error" /> 
+    </div>
+
+  )
 };

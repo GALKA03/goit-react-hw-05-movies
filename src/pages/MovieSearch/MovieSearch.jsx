@@ -5,7 +5,7 @@ import { Link,Outlet,useSearchParams,useLocation } from 'react-router-dom';
 import { Loader } from "../../components/Loading/Loader"
 import styles from '../MovieSearch/MovieSearch.module.css'
 import { ButtonMore } from 'components/ButtonMore/ButtonMore';
-
+import depositphotos from '../MovieSearch/depositphotos.jpg'
  const MovieSearch = () => {
     const [movies, setMovies] = useState([]);
     const[serchParams, setSearchParams]=useSearchParams()
@@ -26,10 +26,11 @@ const [error, setError] = useState(null);
        const fetchMoviesSearch = async () => {
         try {
             setLoading(true);
-           const { results, total_pages, total_results } = await fetchBySearch(query, page) 
-             setMovies(results)
-            setTotal(total_results)
-    
+           const response = await fetchBySearch(query, page) 
+     const  { results, total_pages, total_results }=response;
+          setMovies(results)
+          setTotal(total_results)
+    console.log('response',response)
             const totalPages = Math.ceil(total_pages / 20);
           if (results.length === 0) {
             toast.info('No images found. Please submit another query!');
@@ -66,15 +67,14 @@ setSearchParams({ moviename:form.elements.query.value.trim()})
     }  
     
      const loadMovies = movies.length !== 0;
- console.log('loadImages',loadMovies)
+ //console.log('loadImages',loadMovies)
   const isLastPage = movies.length === total;
-  console.log('isLastPage',isLastPage)
+  //console.log('isLastPage',isLastPage)
   const loadMoreBtn =loadMovies &&  !loading && !isLastPage;
-  console.log('loadMoreBtn',loadMoreBtn)
+  //console.log('loadMoreBtn',loadMoreBtn)
 
     return (
-        <>
-            
+        <>     
         <form className={styles.form} onSubmit={hendleFormSubmit}>
                 <input
                     className={styles.input}
@@ -88,8 +88,11 @@ setSearchParams({ moviename:form.elements.query.value.trim()})
              <button className={styles.button} type="submit"></button>
             </form>
             {error && alert(error.message)}
- {loading && <Loader />} 
-            {loadMovies && (
+        {loading && <Loader />} 
+    
+         
+      
+            {loadMovies ? (
                <> <ul className={styles.list}>
                   {movies.map(({ id, title, poster_path, release_date, vote_average,original_title }) => {
                     return (
@@ -109,8 +112,15 @@ setSearchParams({ moviename:form.elements.query.value.trim()})
                     <Outlet/>
 </> 
             )
-
-            }
+:  <img
+             style={{
+        display: 'block',
+        margin: "10px auto",
+        width: 'auto',
+       height: "auto",
+      }}
+            src={depositphotos} alt="Let`s watch movies" />}
+            
         </>
     )
 }

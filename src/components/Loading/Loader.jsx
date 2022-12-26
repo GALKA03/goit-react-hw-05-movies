@@ -1,9 +1,9 @@
 import { Vortex } from  'react-loader-spinner'
-
+import styles from '../Loading/Loader.module.css'
 export const Loader = () => {
     
     return (
-        <div>
+        <div className={styles.container} >
         <Vortex
   visible={true}
   height="200"
