@@ -7,6 +7,7 @@ import styles from '../MovieSearch/MovieSearch.module.css'
 import { ButtonMore } from 'components/ButtonMore/ButtonMore';
 import depositphotos from '../MovieSearch/depositphotos.jpg'
  import noIMG from 'images/noIMG.jpg'
+import { ScrollUpBtn } from 'components/ScrollUp/ScrollUpBtn';
 
 const MovieSearch = () => {
     const [movies, setMovies] = useState([]);
@@ -101,8 +102,7 @@ setSearchParams({ moviename:form.elements.query.value.trim()})
                             <p className={styles.reiting}>{vote_average}</p>
                         <Link to={`/movie/${id}`} state={{ from: location }}>
                           {poster_path !== null ? <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={original_title} />
-                          : <img src={noIMG} alt={original_title} />
-                        }
+                            : <img src={noIMG} alt={original_title} />}
                         </Link> 
                         <div className={styles.info}>    
                              <h1 className={styles.title}>{title}</h1>
@@ -112,7 +112,8 @@ setSearchParams({ moviename:form.elements.query.value.trim()})
                     )    
                   })}
                    
-                </ul >
+          </ul >
+            <ScrollUpBtn/>
                    {/* {loadMoreBtn &&<ButtonMore onLoadMore={onLoadMore}/>} */}
                     <Outlet/>
 </> 

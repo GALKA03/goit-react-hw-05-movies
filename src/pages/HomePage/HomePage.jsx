@@ -5,8 +5,8 @@ import { fetchByTrending } from '../../services/fetchApi'
 import { Loader } from 'components/Loading/Loader';
 import { ButtonMore } from 'components/ButtonMore/ButtonMore';
 import noIMG from 'images/noIMG.jpg'
-import style from '../HomePage/HomePage.module.css'
-
+import style from '../HomePage/HomePage.module.css';
+ import { ScrollUpBtn } from 'components/ScrollUp/ScrollUpBtn';
 
 const HomePage = () => {
     const [movies, setMovies] = useState([]);
@@ -80,7 +80,7 @@ const { results, total_pages }=response;
        loadMovies && (
        
          <div className={style.conteiner}>
-             {error && alert(error.message)}
+        {error && alert(error.message)}
                 <ul className={style.list}>
             {loading && <Loader />} 
             
@@ -101,8 +101,9 @@ const { results, total_pages }=response;
                     </li>    
                     )    
                 })}     
+            <ScrollUpBtn/> 
                 </ul >
-              
+            
           {loadMoreBtn && <ButtonMore onLoadMore={onLoadMore} />}  
         <Outlet /> 
         {/* < Pagination

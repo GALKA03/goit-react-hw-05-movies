@@ -1,7 +1,8 @@
 // import { ToastContainer} from 'react-toastify';
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from "react-router-dom";
- import { Loader } from './Loading/Loader';
+import { Loader } from './Loading/Loader';
+
 // import styles from 'components/App.module.css'
 // import MainConteiner from "components/MainConteiner/MainConteiner"
 
