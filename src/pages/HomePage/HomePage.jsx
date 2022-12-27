@@ -7,6 +7,7 @@ import { ButtonMore } from 'components/ButtonMore/ButtonMore';
 import noIMG from 'images/noIMG.jpg'
 import style from '../HomePage/HomePage.module.css';
  import { ScrollUpBtn } from 'components/ScrollUp/ScrollUpBtn';
+import Pagination from 'components/Pagination/Pagination';
 
 const HomePage = () => {
     const [movies, setMovies] = useState([]);
@@ -15,7 +16,7 @@ const HomePage = () => {
     const [loading, setLoading] = useState(false);
   //const [total, setTotal] = useState(20);
   const [totalResults, setTotalResults] = useState(0);
-// const [totalPages,settotalPages]=useState(20);
+ const [totalPages,settotalPages]=useState(20);
   
     const location = useLocation();
     
@@ -53,28 +54,18 @@ const { results, total_pages }=response;
 
 //  const paginate= pageNumber=>setPage(pageNumber)
    
-//   const endOffset = page * totalPages;
-//   const firstMovieIndex =  endOffset - totalPages;
-//   const currentMovies = movies.slice(firstMovieIndex, endOffset);
-//   const pageCount = Math.ceil(movies.length / totalPages);
-//  const handlePageClick = (event) => {
-//     const newOffset = (event.selected * totalPages) %   movies.length;
-
-//     setTotalResults(newOffset);
-//   };
-
+ const endOffset = page * totalPages;
+  const firstMovieIndex =  endOffset - totalPages;
+  const currentMovies = movies.slice(firstMovieIndex, endOffset);
   
-  const onLoadMore = () => {
-       setPage(prevPage => prevPage  + 1)
-    }    
+  const paginate =(pageNumber)=>setPage(pageNumber)
+  // const onLoadMore = () => {
+  //      setPage(prevPage => prevPage  + 1)
+  //   }    
     
  const loadMovies = movies.length !== 0;
-
-  const isLastPage = movies.length === totalResults;
-
-  const loadMoreBtn =loadMovies &&  !loading && !isLastPage;
-
-    
+// const isLastPage = movies.length === totalResults;
+// const loadMoreBtn =loadMovies &&  !loading && !isLastPage;  
   return (
   
        loadMovies && (
@@ -103,14 +94,11 @@ const { results, total_pages }=response;
                 })}     
             <ScrollUpBtn/> 
                 </ul >
-            
-          {loadMoreBtn && <ButtonMore onLoadMore={onLoadMore} />}  
+             <Pagination totalPages={totalPages} totalMovies={movies.length} paginate={paginate} />
+          {/* {loadMoreBtn && <ButtonMore onLoadMore={onLoadMore} />}   */}
         <Outlet /> 
-        {/* < Pagination
-         totalResults={totalResults}
-          paginate={paginate}
-        /> */}
-         
+   
+       
             </div>
         
             )
