@@ -21,7 +21,7 @@ const Layout = () => {
           <div className={styles.conteinerInfo}>
             <h2 className={styles.titleInfo} >My contacts</h2>
             <ul className={styles.list}>
-               <li className={styles.item}><Link className={styles.link}  href='https://github.com/GALKA03/'><RiSendPlaneFill/></Link> </li> 
+              <li className={styles.item}><Link className={styles.link} href='https://github.com/GALKA03/'><RiSendPlaneFill /></Link> </li> 
                <li className={styles.item}> <Link className={styles.link} href='https://www.linkedin.com/feed/?trk=onboarding-landing'><RiLinkedinBoxLine/></Link></li> 
              <li className={styles.item}> <Link className={styles.link} href='https://www.facebook.com/profile.php?id=100082452673470'><RiFacebookCircleLine/></Link></li>             
           </ul>

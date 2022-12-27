@@ -13,7 +13,7 @@ import depositphotos from '../MovieSearch/depositphotos.jpg'
 const [error, setError] = useState(null);
 const [loading, setLoading] = useState(false);
 const [totalResults, setTotalResults] = useState(0);
-const [totalPages,settotalPages]=useState(20);
+// const [totalPages,settotalPages]=useState(20);
     
    const location = useLocation()
  const query = serchParams.get('moviename')

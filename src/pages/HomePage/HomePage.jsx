@@ -4,8 +4,8 @@ import { Link, Outlet, useLocation} from 'react-router-dom';
 import { fetchByTrending } from '../../services/fetchApi'
 import { Loader } from 'components/Loading/Loader';
 import { ButtonMore } from 'components/ButtonMore/ButtonMore';
- import  Pagination  from 'components/Pagination/Pagination';
-import ReactPaginate from 'react-paginate'
+//  import  Pagination  from 'components/Pagination/Pagination';
+// import ReactPaginate from 'react-paginate'
 import style from '../HomePage/HomePage.module.css'
 
 
