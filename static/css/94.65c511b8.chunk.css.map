@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/94.65c511b8.chunk.css","mappings":"AAAA,+BAII,cAAe,CADnB,eAAgB,CAEZ,eAAgB,CAJjB,iBAAkB,CAClB,iBAIH","sources":["pages/MovieReviewsPage/MovieReviewsPage.module.css"],"sourcesContent":[".list{\n   padding: 20px 90px;\n   text-align: center;\nfont-weight: 400;\n    font-size: 16px;\n    line-height: 1,8;\n}"],"names":[],"sourceRoot":""}
