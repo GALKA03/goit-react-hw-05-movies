@@ -1,5 +1,12 @@
 .button{
-    width: 50px;
+    display: block;
+    min-width: 100px;
     height: 30px;
-    background-color: blue;
+    background-color: rgb(105, 105, 159);
+    margin: 15px auto;
+    border-radius: 40%;
+    border: transparent;
+    color: azure;
+    font-weight: 500;
+        font-size: 16px;
 }

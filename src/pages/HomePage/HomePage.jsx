@@ -1,10 +1,11 @@
-import {toast} from 'react-toastify';
+// import {toast} from 'react-toastify';
 import { useState, useEffect } from 'react'
 import { Link, Outlet, useLocation} from 'react-router-dom';
 import { fetchByTrending } from '../../services/fetchApi'
 import { Loader } from 'components/Loading/Loader';
 import { ButtonMore } from 'components/ButtonMore/ButtonMore';
-// import  Pagination  from 'components/Pagination/Pagination';
+ import  Pagination  from 'components/Pagination/Pagination';
+import ReactPaginate from 'react-paginate'
 import style from '../HomePage/HomePage.module.css'
 
 
@@ -13,14 +14,13 @@ const HomePage = () => {
     const [page, setPage]=useState(1)
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-  const [total, setTotal] = useState(20);
-  // const [currePage, setPerPAge] = useState(20)
-    const location = useLocation();
-    // console.log('locationHome',location)
-    // const firstRender= useRef(null) 
-    //посмотреть репету про useRefрефс для исключения двойных запросов
-    
+  //const [total, setTotal] = useState(20);
+  const [totalResults, setTotalResults] = useState(0);
+// const [totalPages,settotalPages]=useState(20);
   
+    const location = useLocation();
+    
+    //посмотреть репету про useRefрефс для исключения двойных запросов 
   useEffect(() => {
         const fetchTrending = async () => {
         try {
@@ -30,7 +30,7 @@ const HomePage = () => {
 const { results, total_pages }=response;
             // console.log('response',response)
             setMovies(results)
-            setTotal(response.total_results)
+           setTotalResults(response.total_results)
             // setPage(pageNumber)
          //console.log('resp',response)
            const totalPages = Math.ceil(total_pages /20);
@@ -51,22 +51,32 @@ const { results, total_pages }=response;
       fetchTrending()
     }, [page])
 
-//   const lastMovieIndex = page * total;
-//   const firstMovieIndex = lastMovieIndex - total;
-//  const currentMovie = movies.slise(firstMovieIndex,lastMovieIndex)
-//   const paginate= pageNumber=>setPage(pageNumber)
+
+//  const paginate= pageNumber=>setPage(pageNumber)
+   
+//   const endOffset = page * totalPages;
+//   const firstMovieIndex =  endOffset - totalPages;
+//   const currentMovies = movies.slice(firstMovieIndex, endOffset);
+//   const pageCount = Math.ceil(movies.length / totalPages);
+//  const handlePageClick = (event) => {
+//     const newOffset = (event.selected * totalPages) %   movies.length;
+
+//     setTotalResults(newOffset);
+//   };
+
   
   const onLoadMore = () => {
        setPage(prevPage => prevPage  + 1)
     }    
     
  const loadMovies = movies.length !== 0;
-//  console.log('loadImages',loadMovies)
-  const isLastPage = movies.length === total;
-//   console.log('isLastPage',isLastPage)
+
+  const isLastPage = movies.length === totalResults;
+
   const loadMoreBtn =loadMovies &&  !loading && !isLastPage;
-//   console.log('loadMoreBtn',loadMoreBtn)
-    return (
+
+    
+  return (
   
        loadMovies && (
        
@@ -89,10 +99,13 @@ const { results, total_pages }=response;
                 })}     
                 </ul >
               
-          {loadMoreBtn && <ButtonMore onLoadMore={onLoadMore} />
-          }  
-          <Outlet />  
-          {/* <Pagination total={total} totalPages={movies.length} paginate={paginate} />  */}
+          {loadMoreBtn && <ButtonMore onLoadMore={onLoadMore} />}  
+        <Outlet /> 
+        {/* < Pagination
+         totalResults={totalResults}
+          paginate={paginate}
+        /> */}
+         
             </div>
         
             )

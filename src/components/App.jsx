@@ -38,7 +38,7 @@ export const App = () => {
           <Route path="*" element={<HomePage />} /> 
 </Routes>
         </Suspense> 
-    <ToastContainer />
+    {/* <ToastContainer /> */}
       </>
   )
 }

@@ -1,8 +1,29 @@
 import React from "react";
 import styles from 'components/Pagination/Pagination.module.css'
- const Pagination = ({total,totalPages,paginate}) => {
-     const pageNumbers = []   
-     for (let i = 1; i <= Math.ceil(totalPages / total); i++){
+import ReactPaginate from 'react-paginate';
+import { useState } from 'react'
+import {HomePage} from 'pages/HomePage/HomePage'
+
+const Pagination = ({totalResults,paginate}) => {
+ const totalPages = 20;
+    
+//   return (
+//     <>
+//         {/* <HomePage currentItems={currentItems} />   */}
+//       <ReactPaginate
+//         breakLabel="..."
+//         nextLabel="next >"
+//         onPageChange={handlePageClick}
+//         pageRangeDisplayed={10}
+//         pageCount={pageCount}
+//         previousLabel="< previous"
+//         renderOnZeroPageCount={null}
+//       />
+//     </>
+//   );
+
+const pageNumbers = []   
+     for (let i = 1; i <= Math.ceil(totalPages / totalResults); i++){
        pageNumbers.push(i)
      }
      return (
@@ -14,6 +35,15 @@ import styles from 'components/Pagination/Pagination.module.css'
                              <a href="!#" className={styles.link} onClick={() =>paginate(number)}>
                                  {number}
                              </a>
+    <ReactPaginate
+        breakLabel="..."
+        nextLabel="next >"
+        // onPageChange={handlePageClick}
+        pageRangeDisplayed={10}
+        // pageCount={pageCount}
+        previousLabel="< previous"
+        renderOnZeroPageCount={null}
+      />
                          </li>
                      ))
                  }

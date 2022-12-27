@@ -11,10 +11,11 @@ import depositphotos from '../MovieSearch/depositphotos.jpg'
     const[serchParams, setSearchParams]=useSearchParams()
     const [page, setPage] = useState(1);
 const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [totalResults, setTotalResults] = useState(0);
+const [loading, setLoading] = useState(false);
+const [totalResults, setTotalResults] = useState(0);
 const [totalPages,settotalPages]=useState(20);
-    const location = useLocation()
+    
+   const location = useLocation()
  const query = serchParams.get('moviename')
     
     useEffect(() => {
@@ -39,9 +40,9 @@ const [totalPages,settotalPages]=useState(20);
            if (page === totalPages) {
          toast("You've reached the end of search results.");
            }
-        //   if (page === 1) {
-        //    toast.success(`Hooray! We found ${total_results} images.`);
-        //   }
+          if (page >1) {
+           toast.success(`Hooray! We found ${total_results} images.`);
+          }
          }  
             catch(error) {
                 setError('Ooops. Something went wrong...')
