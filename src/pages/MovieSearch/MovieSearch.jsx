@@ -107,7 +107,7 @@ setSearchParams({ moviename:form.elements.query.value.trim()})
                   })}
                    
                 </ul >
-                   {loadMoreBtn &&<ButtonMore onLoadMore={onLoadMore}/>}
+                   {/* {loadMoreBtn &&<ButtonMore onLoadMore={onLoadMore}/>} */}
                     <Outlet/>
 </> 
             )
