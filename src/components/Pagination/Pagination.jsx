@@ -1,8 +1,7 @@
 // import React from "react";
 // import styles from 'components/Pagination/Pagination.module.css'
 // import ReactPaginate from 'react-paginate';
-// // import { useState } from 'react'
-// // import {HomePage} from 'pages/HomePage/HomePage'
+
 
 // const Pagination = ({totalResults,paginate}) => {
 //  const totalPages = 20;
