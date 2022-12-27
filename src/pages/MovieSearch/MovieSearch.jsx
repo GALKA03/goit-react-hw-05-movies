@@ -6,7 +6,9 @@ import { Loader } from "../../components/Loading/Loader"
 import styles from '../MovieSearch/MovieSearch.module.css'
 import { ButtonMore } from 'components/ButtonMore/ButtonMore';
 import depositphotos from '../MovieSearch/depositphotos.jpg'
- const MovieSearch = () => {
+ import noIMG from 'images/noIMG.jpg'
+
+const MovieSearch = () => {
     const [movies, setMovies] = useState([]);
     const[serchParams, setSearchParams]=useSearchParams()
     const [page, setPage] = useState(1);
@@ -97,7 +99,11 @@ setSearchParams({ moviename:form.elements.query.value.trim()})
                     return (
                     < li key={id} className={styles.item}>
                             <p className={styles.reiting}>{vote_average}</p>
-                             <Link to={`/movie/${id}`} state={{ from: location }}><img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={original_title} /> </Link> 
+                        <Link to={`/movie/${id}`} state={{ from: location }}>
+                          {poster_path !== null ? <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={original_title} />
+                          : <img src={noIMG} alt={original_title} />
+                        }
+                        </Link> 
                         <div className={styles.info}>    
                              <h1 className={styles.title}>{title}</h1>
                         <p className={styles.realase}>{release_date}</p>

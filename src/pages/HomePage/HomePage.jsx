@@ -4,8 +4,7 @@ import { Link, Outlet, useLocation} from 'react-router-dom';
 import { fetchByTrending } from '../../services/fetchApi'
 import { Loader } from 'components/Loading/Loader';
 import { ButtonMore } from 'components/ButtonMore/ButtonMore';
-//  import  Pagination  from 'components/Pagination/Pagination';
-// import ReactPaginate from 'react-paginate'
+import noIMG from 'images/noIMG.jpg'
 import style from '../HomePage/HomePage.module.css'
 
 
@@ -90,7 +89,11 @@ const { results, total_pages }=response;
                     < li key={id} className={style.item} >
                         <p>{vote_average}</p>
                         <div className={style.info}> 
-                            <Link to={`/movie/${id}`} state ={{from: location}}><img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={original_title} /> </Link>
+                          <Link to={`/movie/${id}`} state={{ from: location }}>
+                {poster_path !== null ? <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={original_title} />
+                : <img src={noIMG} alt={original_title} />
+              }
+                           </Link>
                            
                              <h1>{title}</h1>
                         <p>{release_date}</p>
