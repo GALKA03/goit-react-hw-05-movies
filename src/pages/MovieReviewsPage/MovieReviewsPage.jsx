@@ -1,7 +1,8 @@
 import { fetchMoviesReviews } from "../../services/fetchApi";
 import { useState, useEffect } from "react";
 import { Outlet, useParams } from "react-router-dom";
- const MovieReviewsPage = () => { 
+ import styles from 'pages/MovieReviewsPage/MovieReviewsPage.module.css'
+const MovieReviewsPage = () => { 
     const { moviesId } = useParams()
  
     const [results, setResults] = useState([]);
@@ -33,13 +34,13 @@ useEffect(() => {
         results && (
             <>
                  {error && alert(error.message)}
-                <ul>
+                <ul className={styles.list}>
                 {results.map(({id,author,content}) => {
                     return (
-                        <li key={id}>
-                            <div>
-                                <h1>{author}</h1>
-                                <p>{content}</p>
+                        <li key={id} className={styles.item}>
+                            <div className={styles.conteiner}>
+                                <h1 className={styles.title}>{author}</h1>
+                                <p className={styles.text}>{content}</p>
                                 {/* <p>created:{created_at}</p>
                                 <a href={url}>{url}</a> */}
                             </div>

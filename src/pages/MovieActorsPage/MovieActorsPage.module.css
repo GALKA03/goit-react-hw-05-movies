@@ -1,0 +1,35 @@
+.list{
+    display: flex;
+    flex-wrap: wrap; 
+    
+    justify-content: space-around;
+};
+
+.items{
+  /* flex-basis: calc((100% - 2 * 100px) / 3);  */
+
+    background-color: #fff;
+    box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 20%);
+    text-decoration: none;
+    width: 100%;
+
+    background-repeat: no-repeat;
+    background-size: contain;
+margin-bottom: 40px;
+}
+    .img{
+        width: 200px;
+        height: auto;
+       
+    }
+    .conteiner{
+        margin-bottom: 20px;
+    }
+    .title{
+        font-weight: 600;
+        font-size: 20px;
+        text-align: center;
+    }
+    .text{
+        text-align: center;
+    }

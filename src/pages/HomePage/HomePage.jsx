@@ -88,9 +88,10 @@ const { results, total_pages }=response;
                 {movies.map(({ id, title, poster_path, release_date, vote_average,original_title }) => {  
                     return (
                     < li key={id} className={style.item} >
-                            <p>{vote_average}</p>
+                        <p>{vote_average}</p>
+                        <div className={style.info}> 
                             <Link to={`/movie/${id}`} state ={{from: location}}><img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={original_title} /> </Link>
-                        <div className={style.info}>    
+                           
                              <h1>{title}</h1>
                         <p>{release_date}</p>
                             </div>

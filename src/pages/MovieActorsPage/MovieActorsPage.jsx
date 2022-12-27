@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom"
 import { useParams } from "react-router-dom";
 import{fetchMoviesByActors} from "../../services/fetchApi"
-
+import styles from 'pages/MovieActorsPage/MovieActorsPage.module.css'
  const MovieActorsPage = () => {
 const{moviesId}=useParams()
 
@@ -35,14 +35,15 @@ const{moviesId}=useParams()
         cast && (
             <>
                  {error && alert(error.message)}
-                <ul>
+                <ul className={styles.list}>
                  {cast.map(({id,profile_path,original_name,name,character}) =>{
                   return (
-                     <li key={id}>
-                          <img src={`https://image.tmdb.org/t/p/w500/${profile_path}`} alt={original_name} /> 
-                          <div>
-                              <h1>{name}</h1> 
-                              <p>{character}</p> 
+                     <li key={id} className={styles.items}>
+                          <div className={styles.conteiner}>
+                              <img className={styles.img} src={`https://image.tmdb.org/t/p/w500/${profile_path}`} alt={original_name} /> 
+                          
+                              <h1 className={styles.title}>{name}</h1> 
+                              <p className={styles.text}>{character}</p> 
                          </div>
                                
                 </li> 
