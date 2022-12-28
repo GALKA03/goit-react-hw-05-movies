@@ -11,45 +11,46 @@ import style from '../HomePage/HomePage.module.css';
 import Pagination from 'components/Pagination/Pagination';
 
 const HomePage = () => {
-    const [movies, setMovies] = useState([]);
-    const [page, setPage]=useState(1)
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [totalResults, setTotalResults] = useState(0);
-    const [totalPages]=useState(20);
+  const [movies, setMovies] = useState([]);
+  const [page, setPage] = useState(1)
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [totalResults, setTotalResults] = useState(0);
+  const [totalPages] = useState(20);
   
-    const location = useLocation();
+  const location = useLocation();
     
   useEffect(() => {
-        const fetchTrending = async () => {
-        try {
-            setLoading(true);
-            const response = await fetchByTrending(page)
-            const { results, total_pages }=response;
+    const fetchTrending = async () => {
+      try {
+        setLoading(true);
+        const response = await fetchByTrending(page)
+        const { results, total_pages } = response;
            
-            setMovies(results)
+        setMovies(results)
           
-            setTotalResults(response.total_results)
-           const totalPages = Math.ceil(total_pages /20);
-           if (response.results.length === 0) {
-            alert('No images found. Please submit another query!');
+        setTotalResults(response.total_results)
+        const totalPages = Math.ceil(total_pages / 20);
+        if (response.results.length === 0) {
+          alert('No images found. Please submit another query!');
           return
-          }
-           if (page === totalPages) {
-         alert("You've reached the end of search results.");
-           }
         }
-      catch(error){
+        if (page === totalPages) {
+          alert("You've reached the end of search results.");
+        }
+      }
+      catch (error) {
         setError('Ooops. Something went wrong...')
-            } 
-        finally {
+      }
+      finally {
         setLoading(false);
-      }  }
-      fetchTrending()
-    }, [page])
+      }
+    }
+    fetchTrending()
+  }, [page])
 
 
-// const paginate= pageNumber=>setPage(pageNumber)
+  // const paginate= pageNumber=>setPage(pageNumber)
    
   // const endOffset = page * totalPages;
  
@@ -62,49 +63,50 @@ const HomePage = () => {
   const endOffset = page * totalPages;
  
   const displayMovies = movies
-      .slice(
+    .slice(
       endOffset,
       endOffset + totalPages
-             )
-  const totalPagesMov = Math.ceil(totalResults /20);
- const changePage = ({ selected }) => {
-    console.log(selected )
-      setPage(selected) };
+    )
+  const totalPagesMov = Math.ceil(totalResults / 20);
+  const changePage = ({ selected }) => {
+    console.log(selected)
+  setPage(selected ===0 ? 1: selected)
+  };
   // const onLoadMore = () => {
   //      setPage(prevPage => prevPage  + 1)
   //   }    
     
- const loadMovies = movies.length !== 0;
-// const isLastPage = movies.length === totalResults;
-// const loadMoreBtn =loadMovies &&  !loading && !isLastPage;  
+  const loadMovies = movies.length !== 0;
+  // const isLastPage = movies.length === totalResults;
+  // const loadMoreBtn =loadMovies &&  !loading && !isLastPage;  
   return (
   
-       loadMovies && (
+     loadMovies && (
        
-         <div className={style.conteiner}>
+      <div className={style.conteiner}>
         {error && alert(error.message)}
-                <ul className={style.list}>
-            {loading && <Loader />} 
+        <ul className={style.list}>
+          {loading && <Loader />}
             
-                {movies.map(({ id, title, poster_path, release_date, vote_average,original_title }) => {  
-                    return (
-                    < li key={id} className={style.item} >
-                        <p className={style.voitAverege}>{ Math.ceil(vote_average)}</p>
-                        <div className={style.info}> 
-                          <Link to={`/movie/${id}`} state={{ from: location }}>
-                {poster_path !== null ? <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={original_title} />
-                : <img src={noIMG} alt={original_title} />
-              }
-                           </Link>
-                           <div className={style.titleConteiner}>
-                             <h1 className={style.titleText}>{title}</h1>
-                        <p className={style.titleText}>{release_date}</p>
-                          </div>
-                          </div>
-                    </li>    
-                    )    
-                })}     
-          <ScrollUpBtn /> 
+          {movies.map(({ id, title, poster_path, release_date, vote_average, original_title }) => {
+            return (
+              < li key={id} className={style.item} >
+                <p className={style.voitAverege}>{Math.ceil(vote_average)}</p>
+                <div className={style.info}>
+                  <Link to={`/movie/${id}`} state={{ from: location }}>
+                    {poster_path !== null ? <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={original_title} />
+                      : <img src={noIMG} alt={original_title} />
+                    }
+                  </Link>
+                  <div className={style.titleConteiner}>
+                    <h1 className={style.titleText}>{title}</h1>
+                    <p className={style.titleText}>{release_date}</p>
+                  </div>
+                </div>
+              </li>
+            )
+          })}
+          <ScrollUpBtn />
 
         </ul >
 
@@ -120,13 +122,12 @@ const HomePage = () => {
         
         />
         {displayMovies}
-             {/* <Pagination totalPages={totalPages} totalMovies={movies.length} paginate={paginate} /> */}
-          {/* {loadMoreBtn && <ButtonMore onLoadMore={onLoadMore} />}   */}
-        <Outlet /> 
-            </div>
+        {/* <Pagination totalPages={totalPages} totalMovies={movies.length} paginate={paginate} /> */}
+        {/* {loadMoreBtn && <ButtonMore onLoadMore={onLoadMore} />}   */}
+        <Outlet />
+      </div>
         
-            )
-          
-  )
+    ) ) 
+
 }
 export default HomePage;
