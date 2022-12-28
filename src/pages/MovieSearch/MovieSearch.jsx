@@ -59,9 +59,9 @@ fetchMoviesSearch()
             
 const hendleFormSubmit = e => {
     e.preventDefault();
-    // if (query === null || query === '') {
-    //     return
-    // } 
+     if (query === null || query === '') {
+         return 
+     } 
     const form = e.target
 setSearchParams({ moviename:form.elements.query.value.trim()})
     form.reset()
