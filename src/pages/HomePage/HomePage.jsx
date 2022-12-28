@@ -15,7 +15,7 @@ const HomePage = () => {
     const [page, setPage]=useState(1)
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [totalResults, setTotalResults] = useState(1000);
+    const [totalResults, setTotalResults] = useState(0);
     const [totalPages]=useState(20);
   
     const location = useLocation();
@@ -57,7 +57,7 @@ const HomePage = () => {
   
   // const currentMovies = movies.slice(firstMovieIndex, endOffset);
  
-  // const paginate =(pageNumber)=>setPage(pageNumber)
+  //const changePage =(pageNumber)=>setPage(pageNumber)
   // пагинация 2
   const endOffset = page * totalPages;
  
@@ -67,10 +67,9 @@ const HomePage = () => {
       endOffset + totalPages
              )
   const totalPagesMov = Math.ceil(totalResults /20);
-  const changePage = ({ selected }) => {
-    console.log({ selected })
-      setPage(selected);
-};
+ const changePage = ({ selected }) => {
+    console.log(selected )
+      setPage(selected) };
   // const onLoadMore = () => {
   //      setPage(prevPage => prevPage  + 1)
   //   }    
