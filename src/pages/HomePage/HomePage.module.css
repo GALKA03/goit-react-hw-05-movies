@@ -1,5 +1,16 @@
-.conteiner{
-
+.voitAverege{
+position: absolute;
+top:10px;
+left:15px;
+font-weight: 800;
+width: 40px;
+height: 40px;
+text-align: center;
+    font-size: 30px;
+    color: rgb(153, 53, 51);
+    border: 0.5px solid rgb(153, 53, 51);
+    border-radius: 50%;
+    
     
 }
 .list{
@@ -11,6 +22,7 @@
             
 }
 .item{
+    position: relative;
     flex-basis: calc((100% - 2 * 15px) / 4 );
        
     background-color: #fff;
@@ -46,7 +58,12 @@
 .info{
     margin-bottom: 30px;
 }
-
+.titleConteiner{
+ min-height: 50px;   
+}
+.titleText{
+    text-align: center;
+}
     /* пагинация */
         .navigationButtons {
             width: 80%;

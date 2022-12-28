@@ -15,25 +15,22 @@ const HomePage = () => {
     const [page, setPage]=useState(1)
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-  //const [total, setTotal] = useState(20);
-  const [totalResults, setTotalResults] = useState(0);
- const [totalPages]=useState(20);
+    const [totalResults, setTotalResults] = useState(0);
+    const [totalPages]=useState(20);
   
     const location = useLocation();
     
-    //посмотреть репету про useRefрефс для исключения двойных запросов 
   useEffect(() => {
         const fetchTrending = async () => {
         try {
             setLoading(true);
             const response = await fetchByTrending(page)
-            //const pageNumber = response.page
+            const pageNumber = response.page
 const { results, total_pages }=response;
             // console.log('response',response)
-            setMovies(results)
+          setMovies(results)
+          
            setTotalResults(response.total_results)
-            // setPage(pageNumber)
-         //console.log('resp',response)
            const totalPages = Math.ceil(total_pages /20);
            if (response.results.length === 0) {
             alert('No images found. Please submit another query!');
@@ -63,16 +60,17 @@ const { results, total_pages }=response;
  
   // const paginate =(pageNumber)=>setPage(pageNumber)
   // пагинация 2
-   const endOffset = page * totalPages;
+  const endOffset = page * totalPages;
  
   const displayMovies = movies
-    .slice(
+      .slice(
       endOffset,
       endOffset + totalPages
-    )
+             )
   const totalPagesMov = Math.ceil(movies.length / totalPages);
   const changePage = ({ selected }) => {
-  setPage(selected);
+    console.log({ selected })
+      setPage(selected);
 };
   // const onLoadMore = () => {
   //      setPage(prevPage => prevPage  + 1)
@@ -93,21 +91,23 @@ const { results, total_pages }=response;
                 {movies.map(({ id, title, poster_path, release_date, vote_average,original_title }) => {  
                     return (
                     < li key={id} className={style.item} >
-                        <p>{vote_average}</p>
+                        <p className={style.voitAverege}>{ Math.ceil(vote_average)}</p>
                         <div className={style.info}> 
                           <Link to={`/movie/${id}`} state={{ from: location }}>
                 {poster_path !== null ? <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={original_title} />
                 : <img src={noIMG} alt={original_title} />
               }
                            </Link>
-                           
-                             <h1>{title}</h1>
-                        <p>{release_date}</p>
-                            </div>
+                           <div className={style.titleConteiner}>
+                             <h1 className={style.titleText}>{title}</h1>
+                        <p className={style.titleText}>{release_date}</p>
+                          </div>
+                          </div>
                     </li>    
                     )    
                 })}     
           <ScrollUpBtn /> 
+
         </ul >
 
         <ReactPaginate
@@ -119,13 +119,14 @@ const { results, total_pages }=response;
           nextLinkClassName={style.nextButton}
           disabledClassName={style.navigationDisabled}
           activeClassName={style.navigationActive}
-        />
         
+        />
+        {displayMovies}
              {/* <Pagination totalPages={totalPages} totalMovies={movies.length} paginate={paginate} /> */}
           {/* {loadMoreBtn && <ButtonMore onLoadMore={onLoadMore} />}   */}
         <Outlet /> 
+    
    
-      {displayMovies}
             </div>
         
             )
