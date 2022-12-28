@@ -15,7 +15,7 @@ const HomePage = () => {
     const [page, setPage]=useState(1)
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [totalResults, setTotalResults] = useState(0);
+    const [totalResults, setTotalResults] = useState(1000);
     const [totalPages]=useState(20);
   
     const location = useLocation();
@@ -25,12 +25,11 @@ const HomePage = () => {
         try {
             setLoading(true);
             const response = await fetchByTrending(page)
-            const pageNumber = response.page
-const { results, total_pages }=response;
-            // console.log('response',response)
-          setMovies(results)
+            const { results, total_pages }=response;
+           
+            setMovies(results)
           
-           setTotalResults(response.total_results)
+            setTotalResults(response.total_results)
            const totalPages = Math.ceil(total_pages /20);
            if (response.results.length === 0) {
             alert('No images found. Please submit another query!');
@@ -67,7 +66,7 @@ const { results, total_pages }=response;
       endOffset,
       endOffset + totalPages
              )
-  const totalPagesMov = Math.ceil(movies.length / totalPages);
+  const totalPagesMov = Math.ceil(totalResults /20);
   const changePage = ({ selected }) => {
     console.log({ selected })
       setPage(selected);
@@ -125,15 +124,10 @@ const { results, total_pages }=response;
              {/* <Pagination totalPages={totalPages} totalMovies={movies.length} paginate={paginate} /> */}
           {/* {loadMoreBtn && <ButtonMore onLoadMore={onLoadMore} />}   */}
         <Outlet /> 
-    
-   
             </div>
         
             )
           
   )
- 
- 
-
 }
 export default HomePage;
