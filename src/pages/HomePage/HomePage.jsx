@@ -1,9 +1,10 @@
 // import {toast} from 'react-toastify';
 import { useState, useEffect } from 'react'
 import { Link, Outlet, useLocation} from 'react-router-dom';
-import { fetchByTrending } from '../../services/fetchApi'
+import { fetchByTrending } from '../../services/fetchApi';
+import ReactPaginate from "react-paginate";
 import { Loader } from 'components/Loading/Loader';
-import { ButtonMore } from 'components/ButtonMore/ButtonMore';
+//import { ButtonMore } from 'components/ButtonMore/ButtonMore';
 import noIMG from 'images/noIMG.jpg'
 import style from '../HomePage/HomePage.module.css';
  import { ScrollUpBtn } from 'components/ScrollUp/ScrollUpBtn';
@@ -16,7 +17,7 @@ const HomePage = () => {
     const [loading, setLoading] = useState(false);
   //const [total, setTotal] = useState(20);
   const [totalResults, setTotalResults] = useState(0);
- const [totalPages,settotalPages]=useState(20);
+ const [totalPages]=useState(20);
   
     const location = useLocation();
     
@@ -52,13 +53,27 @@ const { results, total_pages }=response;
     }, [page])
 
 
-//  const paginate= pageNumber=>setPage(pageNumber)
+// const paginate= pageNumber=>setPage(pageNumber)
    
- const endOffset = page * totalPages;
-  const firstMovieIndex =  endOffset - totalPages;
-  const currentMovies = movies.slice(firstMovieIndex, endOffset);
+  // const endOffset = page * totalPages;
+ 
+  // const firstMovieIndex = endOffset - totalPages;
   
-  const paginate =(pageNumber)=>setPage(pageNumber)
+  // const currentMovies = movies.slice(firstMovieIndex, endOffset);
+ 
+  // const paginate =(pageNumber)=>setPage(pageNumber)
+  // пагинация 2
+   const endOffset = page * totalPages;
+ 
+  const displayMovies = movies
+    .slice(
+      endOffset,
+      endOffset + totalPages
+    )
+  const totalPagesMov = Math.ceil(movies.length / totalPages);
+  const changePage = ({ selected }) => {
+  setPage(selected);
+};
   // const onLoadMore = () => {
   //      setPage(prevPage => prevPage  + 1)
   //   }    
@@ -92,18 +107,32 @@ const { results, total_pages }=response;
                     </li>    
                     )    
                 })}     
-            <ScrollUpBtn/> 
-                </ul >
-             <Pagination totalPages={totalPages} totalMovies={movies.length} paginate={paginate} />
+          <ScrollUpBtn /> 
+        </ul >
+
+        <ReactPaginate
+          pageCount={totalPagesMov}
+          totalMovies={movies.length}
+          onPageChange={changePage}
+          containerClassName={style.navigationButtons}
+          previousLinkClassName={style.previousButton}
+          nextLinkClassName={style.nextButton}
+          disabledClassName={style.navigationDisabled}
+          activeClassName={style.navigationActive}
+        />
+        
+             {/* <Pagination totalPages={totalPages} totalMovies={movies.length} paginate={paginate} /> */}
           {/* {loadMoreBtn && <ButtonMore onLoadMore={onLoadMore} />}   */}
         <Outlet /> 
    
-       
+      {displayMovies}
             </div>
         
             )
           
-    )
+  )
+ 
+ 
 
 }
 export default HomePage;
