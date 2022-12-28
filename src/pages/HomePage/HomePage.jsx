@@ -69,8 +69,9 @@ const HomePage = () => {
     )
   const totalPagesMov = Math.ceil(totalResults / 20);
   const changePage = ({ selected }) => {
-    console.log(selected)
-  setPage(selected ===0 ? 1: selected)
+    console.log(selected+1)
+    setPage(selected+1)
+  //setPage(selected ===0 ? 1: selected)
   };
   // const onLoadMore = () => {
   //      setPage(prevPage => prevPage  + 1)
