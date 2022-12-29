@@ -6,9 +6,10 @@ import ReactPaginate from "react-paginate";
 import { Loader } from 'components/Loading/Loader';
 //import { ButtonMore } from 'components/ButtonMore/ButtonMore';
 import noIMG from 'images/noIMG.jpg'
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import style from '../HomePage/HomePage.module.css';
  import { ScrollUpBtn } from 'components/ScrollUp/ScrollUpBtn';
-import Pagination from 'components/Pagination/Pagination';
+
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
@@ -32,11 +33,11 @@ const HomePage = () => {
         setTotalResults(response.total_results)
         const totalPages = Math.ceil(total_pages / 20);
         if (response.results.length === 0) {
-          alert('No images found. Please submit another query!');
+           Notify.info('No images found. Please submit another query!');
           return
         }
         if (page === totalPages) {
-          alert("You've reached the end of search results.");
+           Notify.info("You've reached the end of search results.");
         }
       }
       catch (error) {
@@ -50,18 +51,7 @@ const HomePage = () => {
   }, [page])
 
 
-  // const paginate= pageNumber=>setPage(pageNumber)
-   
-  // const endOffset = page * totalPages;
- 
-  // const firstMovieIndex = endOffset - totalPages;
-  
-  // const currentMovies = movies.slice(firstMovieIndex, endOffset);
- 
-  //const changePage =(pageNumber)=>setPage(pageNumber)
-  // пагинация 2
   const endOffset = page * totalPages;
- 
   const displayMovies = movies
     .slice(
       endOffset,
@@ -69,7 +59,6 @@ const HomePage = () => {
     )
   const totalPagesMov = Math.ceil(totalResults / 20);
   const changePage = ({ selected }) => {
-    console.log(selected+1)
     setPage(selected+1)
   //setPage(selected ===0 ? 1: selected)
   };
@@ -123,7 +112,6 @@ const HomePage = () => {
         
         />
         {displayMovies}
-        {/* <Pagination totalPages={totalPages} totalMovies={movies.length} paginate={paginate} /> */}
         {/* {loadMoreBtn && <ButtonMore onLoadMore={onLoadMore} />}   */}
         <Outlet />
       </div>

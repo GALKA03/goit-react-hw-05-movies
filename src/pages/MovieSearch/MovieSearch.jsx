@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import {toast} from 'react-toastify';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { fetchBySearch } from 'services/fetchApi';
 import { Link,Outlet,useSearchParams,useLocation } from 'react-router-dom';
 import { Loader } from "../../components/Loading/Loader"
@@ -23,7 +23,7 @@ const [totalResults, setTotalResults] = useState(0);
     
     useEffect(() => {
         if (!query) {
-            //   toast.info('No movies found. Try again!');
+             Notify.info('No movies found. Try again!');
               return
           }
        
@@ -34,17 +34,16 @@ const [totalResults, setTotalResults] = useState(0);
      const  { results, total_pages, total_results }=response;
           setMovies(results)
           setTotalResults(total_results)
-    console.log('response',response)
             const totalPages = Math.ceil(total_pages / 20);
           if (results.length === 0) {
-            toast.info('No images found. Please submit another query!');
+            Notify.info('No images found. Please submit another query!');
           return
           }
            if (page === totalPages) {
-         toast("You've reached the end of search results.");
+       Notify.info("You've reached the end of search results.");
            }
           if (page >1) {
-           toast.success(`Hooray! We found ${total_results} images.`);
+           Notify.success(`Hooray! We found ${total_results} images.`);
           }
          }  
             catch(error) {
@@ -59,11 +58,13 @@ fetchMoviesSearch()
             
 const hendleFormSubmit = e => {
     e.preventDefault();
-     if (query === null || query === '') {
-         return 
-     } 
+ 
     const form = e.target
 setSearchParams({ moviename:form.elements.query.value.trim()})
+
+  //  if (query === null || query === '') {
+  //   return
+  // }
     form.reset()
     }
     const onLoadMore = () => {
