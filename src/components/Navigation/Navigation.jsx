@@ -17,12 +17,7 @@ export const Navigation = () => {
                 style={({ isActive }) =>isActive ? activeStyle : undefined}
                 className={styles.link}
                 >HOME</NavLink></li>
-                {/* <li><NavLink 
-                    to='/movie'
-                    style={({ isActive }) =>isActive ? activeStyle : undefined} 
-                className={styles.link}
 
-    >Movies</NavLink></li>*/}
                 <li>  
                     <NavLink to='/movie'
                      style={({ isActive }) =>isActive ? activeStyle : undefined} 

@@ -3,7 +3,7 @@ import { Link, Outlet } from 'react-router-dom'
 import styles from 'components/Layout/Layout.module.css'
 // import { BsLinkedin} from "@react-icons/all-files/fa/BsLinkedin"
 //import { AiOutlineLinkedin } from "react-icons/fa/AiOutlineLinkedin"
-import {RiSendPlaneFill,RiLinkedinBoxLine,RiFacebookCircleLine} from "react-icons/ri";
+import {RiGithubFill,RiLinkedinBoxLine,RiFacebookCircleLine} from "react-icons/ri";
 
 const Layout = () => {
     return (
@@ -21,9 +21,9 @@ const Layout = () => {
           <div className={styles.conteinerInfo}>
             <h2 className={styles.titleInfo} >My contacts</h2>
             <ul className={styles.list}>
-              <li className={styles.item}><Link className={styles.link} href='https://github.com/GALKA03/'><RiSendPlaneFill /></Link> </li> 
-               <li className={styles.item}> <Link className={styles.link} href='https://www.linkedin.com/feed/?trk=onboarding-landing'><RiLinkedinBoxLine/></Link></li> 
-             <li className={styles.item}> <Link className={styles.link} href='https://www.facebook.com/profile.php?id=100082452673470'><RiFacebookCircleLine/></Link></li>             
+              <li className={styles.item}><a className={styles.link} href='https://github.com/GALKA03/'><RiGithubFill  size={30} style={{ fill: 'white' }} /></a> </li> 
+              <li className={styles.item}> <a className={styles.link} href='https://www.linkedin.com/feed/?trk=onboarding-landing'><RiLinkedinBoxLine size={30} style={{ fill: 'white' }}/></a></li> 
+              <li className={styles.item}> <a className={styles.link} href='https://www.facebook.com/profile.php?id=100082452673470'><RiFacebookCircleLine size={30} style={{ fill: 'white' }} /></a></li>             
           </ul>
 
             
