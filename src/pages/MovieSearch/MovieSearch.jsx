@@ -138,7 +138,7 @@ const MovieSearch = () => {
                           alt={original_title}
                         />
                       ) : (
-                        <img src={noIMG} alt={original_title} />
+                          <img src={noIMG} alt={original_title} style={{width: '100%'  , height:'auto' }}/>
                       )}
                     </Link>
                    <div className={styles.titleConteiner}>
