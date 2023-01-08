@@ -83,7 +83,7 @@ const HomePage = () => {
               < li key={id} className={style.item} >
                 <p className={style.voitAverege}>{Math.ceil(vote_average)}</p>
                 <div className={style.info}>
-                  <Link to={`/movie/${id}`} state={{ from: location }}>
+                  <Link className={style.linc} to={`/movie/${id}`} state={{ from: location }}>
                     {poster_path !== null ? <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={original_title} />
                       : <img src={noIMG} alt={original_title} />
                     }

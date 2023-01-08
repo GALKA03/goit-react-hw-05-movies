@@ -33,10 +33,10 @@ const MovieSearch = () => {
         setLoading(true);
         const response = await fetchBySearch(query, page);
         const { results, total_pages, total_results } = response;
-        setMovies(results)
-        //setMovies([...movies, ...results]);
+        // setMovies(results)
+        setMovies([...movies, ...results]);
         setTotalResults(total_results);
-         //setPage(prevState => prevState + 1)
+         setPage(prevState => prevState + 1)
         const totalPages = Math.ceil(total_pages / 20);
         // if (results.length === 0) {
         //   Notify.info('No images found. Please submit another query!');
@@ -59,7 +59,7 @@ const MovieSearch = () => {
       fetchMoviesSearch();
     
     
-  }, [query, page]);
+  }, [query, page,movies ]);
 
   // useEffect(() => {
   //   document.addEventListener('scroll', scrollHandler)
@@ -89,9 +89,9 @@ const MovieSearch = () => {
 
     form.reset();
   };
-  const onLoadMore = () => {
-    setPage(prevNumber => prevNumber + 1);
-  };
+  // const onLoadMore = () => {
+  //   setPage(prevNumber => prevNumber + 1);
+  // };
 
   const loadMovies = movies.length !== 0;
   
@@ -131,7 +131,8 @@ const MovieSearch = () => {
                 return (
                   <li key={id} className={styles.item}>
                     <p className={styles.voitAverege}>{Math.ceil(vote_average)}</p>
-                    <Link to={`/movie/${id}`} state={{ from: location }}>
+                     <div className={styles.info}>
+                    <Link className={styles.linc} to={`/movie/${id}`} state={{ from: location }}>
                       {poster_path !== null ? (
                         <img
                           src={`https://image.tmdb.org/t/p/w500${poster_path}`}
@@ -144,14 +145,14 @@ const MovieSearch = () => {
                    <div className={styles.titleConteiner}>
                     <h1 className={styles.titleText}>{title}</h1>
                     <p className={styles.titleText}>{release_date}</p>
-                  </div>
+                      </div>
+                    </div>
                   </li>
                 );
               }
             )}
           </ul>
           <ScrollUpBtn />
-          {/* {loadMoreBtn &&<ButtonMore onLoadMore={onLoadMore}/>} */}
           <Outlet />
         </>
       ) : (
@@ -166,7 +167,7 @@ const MovieSearch = () => {
           alt="Let`s watch movies"
         />
       )}
-      {loadMoreBtn && <ButtonMore onLoadMore={onLoadMore} />} 
+      {/* {loadMoreBtn && <ButtonMore onLoadMore={onLoadMore} />}  */}
     </>
   );
 };

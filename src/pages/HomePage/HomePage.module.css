@@ -1,3 +1,47 @@
+@media screen and (max-width: 700px) {
+    .list {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .item:not(:last-child) {
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (min-width:700px)and (max-width:1200px) {
+    .item {
+
+        flex-basis: calc((100% - 2 * 15px) / 2);
+        /* margin-right: 15px; */
+
+    }
+
+    .item:not(:nth-last-child(-n + 2)) {
+        margin-bottom: 20px;
+    }
+
+    /* .item:not(:nth-last-child(-2n)) {
+    margin-right: 10px; */
+}
+@media screen and (min-width: 1200px) {
+    .item {
+        flex-basis: calc((100% - 3 * 15px) / 4);
+    }
+    .item:not(:nth-last-child(-n+4)) {
+        margin-bottom: 20px;
+    }
+
+}
+.linc {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition-property: transform;
+    transition-duration: 550ms;
+}
+
 .voitAverege{
 position: absolute;
 top:10px;
@@ -16,6 +60,7 @@ text-align: center;
 .list{
      display: flex;
             justify-content: space-around;
+            align-items: center;
             flex-wrap: wrap;   
              /* gap: 10px 10px 0px 10px;  */
 
@@ -23,12 +68,11 @@ text-align: center;
 }
 .item{
     position: relative;
-    flex-basis: calc((100% - 2 * 15px) / 4 );
+    /* flex-basis: calc((100% - 2 * 15px) / 4 ); */
        
     background-color: #fff;
     box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 20%);
     cursor: pointer;
-    position: relative;
     text-decoration: none;
     width: 100%;
        
