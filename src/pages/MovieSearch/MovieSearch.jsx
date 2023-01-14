@@ -7,7 +7,11 @@ import styles from '../MovieSearch/MovieSearch.module.css';
 import { ButtonMore } from 'components/ButtonMore/ButtonMore';
 import depositphotos from '../MovieSearch/depositphotos.jpg';
 import noIMG from 'images/noIMG.jpg';
+import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import { ScrollUpBtn } from 'components/ScrollUp/ScrollUpBtn';
+// import * as Scroll from 'react-scroll';
+
+
 
 const MovieSearch = () => {
   const [movies, setMovies] = useState([]);
@@ -21,6 +25,7 @@ const MovieSearch = () => {
 
   const location = useLocation();
   const query = serchParams.get('moviename');
+
 
   useEffect(() => {
 
@@ -52,7 +57,7 @@ const MovieSearch = () => {
         setError('Ooops. Something went wrong...');
       } finally {
         setLoading(false);
-        //setFetching(false)
+        setFetching(false)
       }
     };
    
@@ -61,25 +66,25 @@ const MovieSearch = () => {
     
   }, [query, page,movies ]);
 
-  // useEffect(() => {
-  //   document.addEventListener('scroll', scrollHandler)
+  useEffect(() => {
+    document.addEventListener('scroll', scrollHandler)
 
-  //   return function () {
-  //     document.removeEventListener('scroll', scrollHandler)
-  //   }
-  // }, [])
+    return function () {
+      document.removeEventListener('scroll', scrollHandler)
+    }
+  }, [])
   
-  // const scrollHandler = (e) => {
-  //   if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100
-  //   && movies.length < totalResults) {
-  //     setLoading(true)  
-  //     console.log('scroll')
-  //   }
+  const scrollHandler = (e) => {
+    if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100
+    && movies.length < totalResults) {
+      setLoading(true)  
+      console.log('scroll')
+    }
     
-  //     console.log('scrollHeight', e.target.documentElement.scrollHeight)
-  //   console.log('scrollTop',e.target.documentElement.scrollTop);
-  //    console.log('inner', window.innerHeight)
-  // }
+      console.log('scrollHeight', e.target.documentElement.scrollHeight)
+    console.log('scrollTop',e.target.documentElement.scrollTop);
+     console.log('inner', window.innerHeight)
+  }
   
   const hendleFormSubmit = e => {
     e.preventDefault();
