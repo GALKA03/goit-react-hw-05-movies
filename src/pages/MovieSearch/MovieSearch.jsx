@@ -38,10 +38,10 @@ const MovieSearch = () => {
         setLoading(true);
         const response = await fetchBySearch(query, page);
         const { results, total_pages, total_results } = response;
-        // setMovies(results)
-        setMovies([...movies, ...results]);
+         setMovies(results)
+        // setMovies([...movies, ...results]);
         setTotalResults(total_results);
-         setPage(prevState => prevState + 1)
+        //  setPage(prevState => prevState + 1)
         const totalPages = Math.ceil(total_pages / 20);
         // if (results.length === 0) {
         //   Notify.info('No images found. Please submit another query!');
@@ -57,34 +57,32 @@ const MovieSearch = () => {
         setError('Ooops. Something went wrong...');
       } finally {
         setLoading(false);
-        setFetching(false)
+        // setFetching(false)
       }
     };
    
-      fetchMoviesSearch();
-    
-    
-  }, [query, page,movies ]);
+      fetchMoviesSearch();    
+  }, [query, page ]);
 
-  useEffect(() => {
-    document.addEventListener('scroll', scrollHandler)
+  // useEffect(() => {
+  //   document.addEventListener('scroll', scrollHandler)
 
-    return function () {
-      document.removeEventListener('scroll', scrollHandler)
-    }
-  }, [])
+  //   return function () {
+  //     document.removeEventListener('scroll', scrollHandler)
+  //   }
+  // }, [])
   
-  const scrollHandler = (e) => {
-    if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100
-    && movies.length < totalResults) {
-      setLoading(true)  
-      console.log('scroll')
-    }
+  // const scrollHandler = (e) => {
+  //   if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100
+  //   && movies.length < totalResults) {
+  //     setLoading(true)  
+  //     console.log('scroll')
+  //   }
     
-      console.log('scrollHeight', e.target.documentElement.scrollHeight)
-    console.log('scrollTop',e.target.documentElement.scrollTop);
-     console.log('inner', window.innerHeight)
-  }
+    //   console.log('scrollHeight', e.target.documentElement.scrollHeight)
+    // console.log('scrollTop',e.target.documentElement.scrollTop);
+    //  console.log('inner', window.innerHeight)
+  // }
   
   const hendleFormSubmit = e => {
     e.preventDefault();
@@ -94,9 +92,9 @@ const MovieSearch = () => {
 
     form.reset();
   };
-  // const onLoadMore = () => {
-  //   setPage(prevNumber => prevNumber + 1);
-  // };
+  const onLoadMore = () => {
+    setPage(prevNumber => prevNumber + 1);
+  };
 
   const loadMovies = movies.length !== 0;
   
@@ -137,7 +135,7 @@ const MovieSearch = () => {
                   <li key={id} className={styles.item}>
                     <p className={styles.voitAverege}>{Math.ceil(vote_average)}</p>
                      <div className={styles.info}>
-                    <Link className={styles.linc} to={`/movie/${id}`} state={{ from: location }}>
+                    <Link className={styles.link} to={`/movie/${id}`} state={{ from: location }}>
                       {poster_path !== null ? (
                         <img
                           src={`https://image.tmdb.org/t/p/w500${poster_path}`}
@@ -146,12 +144,13 @@ const MovieSearch = () => {
                       ) : (
                           <img src={noIMG} alt={original_title} style={{width: '100%'  , height:'auto' }}/>
                       )}
-                    </Link>
+                      </Link>
+                      </div>
                    <div className={styles.titleConteiner}>
                     <h1 className={styles.titleText}>{title}</h1>
                     <p className={styles.titleText}>{release_date}</p>
                       </div>
-                    </div>
+                    
                   </li>
                 );
               }

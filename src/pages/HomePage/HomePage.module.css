@@ -110,10 +110,11 @@ text-align: center;
 }
     /* пагинация */
         .navigationButtons {
-            width: 80%;
+            width: 60%;
             height: 40px;
             list-style: none;
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             margin: auto;
             padding-top: 40px;
