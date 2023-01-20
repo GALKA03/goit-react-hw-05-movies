@@ -41,7 +41,7 @@ const{moviesId}=useParams()
                  {cast.map(({id,profile_path,original_name,name,character}) =>{
                   return (
                      <li key={id} className={styles.items}>
-                          <div className={styles.conteiner}>
+                          {/* <div className={styles.conteiner}> */}
                               {profile_path === null ? <img className={styles.img} src={noPhoto} alt={original_name} />
                                 :<img className={styles.img} src={`https://image.tmdb.org/t/p/w500/${profile_path}`} alt={original_name} />  
                               
@@ -49,7 +49,7 @@ const{moviesId}=useParams()
                           
                               <h1 className={styles.title}>{name}</h1> 
                               <p className={styles.text}>{character}</p> 
-                         </div>
+                         {/* </div> */}
                                
                 </li> 
                   )   

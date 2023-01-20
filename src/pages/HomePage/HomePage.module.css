@@ -110,7 +110,7 @@ text-align: center;
 }
     /* пагинация */
         .navigationButtons {
-            width: 60%;
+            /* width: 60%; */
             height: 40px;
             list-style: none;
             display: flex;
@@ -122,7 +122,7 @@ text-align: center;
     
         .navigationButtons a {
             padding: 10px;
-            margin: 8px;
+            margin: 4px;
             border-radius: 5px;
             border: 1px solid rgb(100, 22, 136);
             color: rgb(125, 3, 186);

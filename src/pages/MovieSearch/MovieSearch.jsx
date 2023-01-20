@@ -92,9 +92,9 @@ const MovieSearch = () => {
 
     form.reset();
   };
-  const onLoadMore = () => {
-    setPage(prevNumber => prevNumber + 1);
-  };
+  // const onLoadMore = () => {
+  //   setPage(prevNumber => prevNumber + 1);
+  // };
 
   const loadMovies = movies.length !== 0;
   
